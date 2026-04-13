@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0070)file:///Users/alenamaksimenko/Downloads/research_hypotheses%20(2).html -->
-<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Исследование + Гипотезы</title>
 <style>
@@ -184,15 +184,18 @@
   </div>
   <div class="ph-actions">
     <button class="btn" onclick="addRow()">
-      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="1" x2="7" y2="13"></line><line x1="1" y1="7" x2="13" y2="7"></line></svg>Строку
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>Строку
     </button>
     <button class="btn" onclick="openAddCol()">
-      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="1" x2="7" y2="13"></line><line x1="1" y1="7" x2="13" y2="7"></line></svg>Столбец
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>Столбец
     </button>
     <div class="sep"></div>
     <button class="btn exp" onclick="exportCSV()">
-      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 11h10M7 2v7M4 6l3 3 3-3"></path></svg>CSV
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 11h10M7 2v7M4 6l3 3 3-3"/></svg>CSV
     </button>
+    <div class="sep"></div>
+    <button class="btn" onclick="resetStorage()" title="Сбросить все изменения к исходным данным" style="color:#A32D2D;">Сбросить изменения</button>
+    <span id="saveIndicator" style="font-size:10px;color:var(--text3);align-self:center;white-space:nowrap;"></span>
   </div>
 </div>
 
@@ -201,11 +204,11 @@
   <div class="filter-row">
     <span class="filter-label">Тема</span>
     <button class="chip all-t on" data-topic="all">Все</button>
-    <button class="chip t-nav" data-topic="nav">Навигация</button>
+    <button class="chip t-nav"  data-topic="nav">Навигация</button>
     <button class="chip t-prog" data-topic="prog">Прогресс</button>
     <button class="chip t-plan" data-topic="plan">Планирование</button>
     <button class="chip t-cons" data-topic="cons">Консультации</button>
-    <button class="chip t-mot" data-topic="mot">Мотивация</button>
+    <button class="chip t-mot"  data-topic="mot">Мотивация</button>
     <button class="chip t-feed" data-topic="feed">Фидбек</button>
     <button class="chip t-cont" data-topic="cont">Контент</button>
   </div>
@@ -241,204 +244,7 @@
     <th>Метрики<span class="th-sub">с направлением изменения</span></th>
     <th id="th-ctrl"></th>
   </tr></thead>
-  <tbody id="tableBody"><tr data-topic="nav" data-flow="dash" class="r t-nav"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Навигация и информационная перегрузка</div></td><td><div class="cell " contenteditable="true" spellcheck="false">ТестУчеба разбросана по 5–9 инструментам: платформа, Telegram-чаты, бот, Notion, блокнот, куратор в личке. Нет единого места для учёбы.</div></td><td class="src-td"><div class="src-inner"><span class="stag on">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Опрос: студенты 14 потока используют до 9 инструментов одновременно. Интервью: «На том курсе всё было в одном месте — это мой фетиш» (Милана).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Дашборд</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Единый дашборд с расписанием, ссылками на лекции, записью к менторам и информацией по курсу</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент может найти информацию в едином окне, то кол-во орг. обращений к куратору снизится, потому что сейчас 60% студентов пишут куратору лично из-за непонимания где посмотреть информацию </div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во орг. обращений к куратору</span><span class="dir dn">↓ снижается</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Удовлетворённость организацией (опрос)</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(0,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(0,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(0)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="nav" data-flow="dash" class="r t-nav"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Навигация и информационная перегрузка</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Студенты не знают, где искать ответы на возникающие — пишут всё одному куратору в личку или в чат. Вопросы в поддержку постоянно повторяются.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Чтобы посмотреть, кто за что отвечает, в чате надо далеко листать вверх» (Кристина). Опрос: 60% опрошенных студентов 13 потока уточняют орг. вопросы у куратора лично после 4 месяцев.</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Дашборд</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Информация в профиле студента, которая закрывает большинство вопросов</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если в профиле студента есть структурированная информация по курсу, то загрузка команды поддержки снизится</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во орг. обращений к куратору в личку</span><span class="dir dn">↓ снижается</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Загрузка команды поддержки</span><span class="dir dn">↓ снижается</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(1,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(1,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(1)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="nav" data-flow="cal" class="r t-nav"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Навигация и информационная перегрузка</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Слишком много Telegram-чатов (студенты насчитывают до 10+) — непонятно, в каком искать нужную информацию.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Требуется вынимание мозга из задачи, чтобы вникнуть, в каком чате смотреть инфу. Я заблудилась» (Юлия). Поддержка: студенты пропускают важную информацию.</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Календарь</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Дублирование ключевых анонсов на платформе (ссылки на эфиры, записи, консультации)</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если важные события отображаются на платформе независимо от Telegram, то кол-во пропущенных важных событий снизится, потому что часть студентов теряет доступ к Telegram/пропускает сообщения.</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во обращений в поддержку</span><span class="dir dn">↓ снижается</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Охват учебных эфиров</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(2,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(2,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(2)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="prog" data-flow="lec" class="r t-prog"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Отслеживание прогресса</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Нет визуального трекера прогресса — студенты не могут отметить просмотренный урок и не видят, сколько уже пройдено.</div></td><td class="src-td"><div class="src-inner"><span class="stag on">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">UX-аудит: «Хотелось отмечать пройденные лекции и получать дофаминовое подкрепление, расставляя галочки». Поддержка: нельзя поставить галочку напротив просмотренного урока — только если прокликать ОС или домашку</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Лекции</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Прогресс-бар по модулю + чекбоксы «Просмотрено» у каждого урока + визуальный дашборд курса</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент видит визуальный прогресс и отмечает уроки галочкой, то доходимость курса вырастет, потому что дофаминовое подкрепление от закрытых чекбоксов поддерживает мотивацию особенно без внешних дедлайнов.</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Доля студентов, завершивших курс</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во просмотренных уроков на студента</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(3,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(3,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(3)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="prog" data-flow="dash" class="r t-prog"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Отслеживание прогресса</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Студенты не понимают, идут ли они в нужном темпе — ориентируются на общий чат, что вызывает тревогу и ощущение отставания.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag off">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Мне кажется, я везде опаздываю. Смотрю в чат — там обсуждают что-то далеко впереди» (Кристина); «Супер насущный вопрос — еду ли я с нужной скоростью» (Никита).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Дашборд</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Трекер прогресса самого студента и ориентиры (например, по неделям)</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент видит объективный индикатор своего темпа, то тревожность снизится, потому что появится личный ориентир и отпадёт необходимость сравнивать себя с другими в чате.</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Оценка удовлетворённости — NPS</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Доходимость</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(4,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(4,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(4)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="prog" data-flow="dash" class="r t-prog"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Отслеживание прогресса</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Нигде не отображаются сроки сгорания доступа к чату и консультациям — студенты думают, что доступ бессрочный.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Информации о лимитах нет вообще! Я видела таблички на продающих стримах, но в курсе акцента не помню» (Юлия). «Этот дедлайн настолько далеко, что я не волнуюсь» (Кристина).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Дашборд</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Блок «Ваш доступ»: ... дней до сгорания консультаций, уведомления за 14 и 7 дней</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент видит конкретный дедлайн сгорания консультаций на дашборде, то доля использованных консультаций вырастет, потому что 75% студентов не берут консультации — и одна из причин — «дедлайн кажется очень далёким».</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">% использованных консультаций от лимита</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">% сгоревших неиспользованных слотов</span><span class="dir dn">↓ снижается</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(5,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(5,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(5)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="plan" data-flow="cal" class="r t-plan"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Планирование и расписание</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Учебные эфиры пересекаются с маркетинговыми — студенты не понимают, что обязательно посетить, испытывают тревогу и чувство «упущенного».</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Расписание 13 и 14 потока было вместе. Я собралась на чужой челлендж в 10 утра. Чёткого понимания расписания нет до сих пор» (Юлия).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Календарь</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Персональный календарь потока — только учебные активности конкретного студента</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если в календаре только события потока студента, то кол-во пропущенных учебных эфиров снизится, потому что смешение расписаний приводит к тому, что студенты приходят на чужие эфиры или пропускают свои.</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">% посещаемых учебных эфиров</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во орг. вопросов по расписанию</span><span class="dir dn">↓ снижается</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(6,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(6,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(6)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="plan" data-flow="prof" class="r t-plan"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Планирование и расписание</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Нет единой страницы с организационными данными — студенты не знают, где платить рассрочку, путаются в неделях программы.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «У меня рассрочка. Я вообще не понимала, где и как платить второй платёж. Пришлось искать куратора в личке» (Юлия).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Профиль</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Блок «Мой курс» в профиле: тариф, текущая неделя, сроки доступа, статус оплаты рассрочки</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если информация о курсе и оплате собрана в профиле, то орг. обращения к кураторам снизятся и своевременность оплат вырастет.</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во орг. обращений к кураторам</span><span class="dir dn">↓ снижается</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">% платежей, поступивших в срок</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(7,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(7,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(7)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="plan" data-flow="lec" class="r t-plan"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Планирование и расписание</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Невозможно учесть длительность лекций при планировании, студенты перегружают себя или теряют ритм. Длинные лекции пугают.</div></td><td class="src-td"><div class="src-inner"><span class="stag on">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag off">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">UX-аудит: «Нужен планировщик, где учитываются задачи и примерное время на лекции». Интервью: «Нужно в курсе ставить вехи-ориентиры» (Юлия).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Лекции</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Метка длительности с учётом скорости воспроизведения + метка «Удобно с телефона»</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент видит реальную длительность урока с учётом скорости, то регулярность учёбы вырастет, потому что можно подобрать урок под доступное временное окно.</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Регулярность — дней с активностью в неделю</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Доходимость</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(8,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(8,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(8)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="cons" data-flow="cons" class="r t-cons"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Консультации с менторами</div></td><td><div class="cell " contenteditable="true" spellcheck="false">75% опрошенных студентов не взяли ни одной консультации (13 поток — 0%). Барьеры: «нечего показать», «не знаю, когда пора», «боюсь потратить лимит впустую».</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Опрос: ~75% ещё не брали консультацию; 13 поток — 0% (ни один из 10 респондентов). Интервью: «Мне нечего предъявить. Хочу прийти с чем-то стоящим» (Милана).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Консультации</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Каталог менторов с компетенциями + блок «С чем прийти прямо сейчас» (карточки примеров)</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если рядом с кнопкой записи есть примеры вопросов, с которыми можно прийти прямо сейчас, то барьер «мне нечего показать» снизится, потому что студенты не знают, что консультация возможна без готового портфолио/идеального кейса</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">% студентов, взявших хотя бы одну консультацию</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Ср. кол-во консультаций на студента</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(9,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(9,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(9)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="cons" data-flow="cons" class="r t-cons"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Консультации с менторами</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Студенты не могут понять, как записаться технически — бросают попытку и «забивают», спрашивают в личке</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Запись к менторам — главная проблема!» (Кристина); «Я не знала, как записаться — ну и не записывалась. Просто забила» (Кристина).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Консультации</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Встроенная запись на консультацию на платформе без перехода Telegram-бот</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если запись осуществляется в одном месте, то кол-во записей вырастет, потому что студенты «забивали» когда не понимали техническую механику </div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во записей на консультацию в неделю</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во орг. вопросов «как записаться»</span><span class="dir dn">↓ снижается</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(10,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(10,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(10)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="cons" data-flow="dash" class="r t-cons"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Консультации с менторами</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Студенты не знают своих лимитов консультаций и когда они сгорят — информация отсутствует внутри курса.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag off">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Информации о лимитах нет вообще. Я видела таблички на стримах, но в курсе акцента не помню» (Юлия); «Появились сомнения, это бросило в смятение» (Никита).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Дашборд</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Счётчик консультаций «Осталось X из N» с подсказкой, после каких модулей брать</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент видит остаток лимита и контекстную подсказку, то он перестанет откладывать запись до «идеального момента», потому что исчезает страх потратить лимит впустую.</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">% сгоревших неиспользованных слотов</span><span class="dir dn">↓ снижается</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Воспринимаемая ценность курса</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(11,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(11,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(11)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="cons" data-flow="cons" class="r t-cons"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Консультации с менторами</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Нет страницы с информацией о предстоящих и прошедших консультациях — сложно подготовиться и вернуться к материалам.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag off">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: Студенты не знают, где найти ссылку на предстоящую консультацию </div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Консультации</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Блок «Предстоящие»: ссылка Yandex.Telemost + дата/время/ментор. Архив: даты, заметки, видеозаписи</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если ссылка и история консультаций доступны на платформе, то посещаемость вырастет</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">% посещаемых консультаций</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Повторные записи на консультацию</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(12,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(12,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(12)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="mot" data-flow="dash" class="r t-mot"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Мотивация и самоорганизация</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Открытый доступ ко всему объёму материалов сразу пугает студентов — они видят огромный курс, теряют мотивацию и прокрастинируют учёбу.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Свободный формат — только для очень организованных людей» (Юлия).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Дашборд</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Режим «Фокус недели»: 3–5 рекомендованных уроков — остальное доступно, но не давит</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент видит короткий список приоритетных уроков на неделю, то доля бросивших учёбу в первые 4 недели снизится, потому что открытый объём вызывает паралич </div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Доля «брошенных» студентов (нет активности &gt; 14 дней)</span><span class="dir dn">↓ снижается</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Доходимость</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(13,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(13,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(13)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="mot" data-flow="dash" class="r t-mot"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Мотивация и самоорганизация</div></td><td><div class="cell " contenteditable="true" spellcheck="false">«Продуктивная прокрастинация»: студенты смотрят лекции вместо практики — прогресса в портфолио нет, наступает выгорание.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag off">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Опрос: «Пару раз я демотивировалась, потому что слишком много смотрела, а портфолио не переделала». Интервью: «В день можно сделать либо одно, либо другое» (Никита).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Дашборд</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Информация о вкладе теоретических занятий и практики/кейсов в прогресс — где теоретические лекции составляют его меньшую долю</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент будет видеть (н а графике), что просмотр только теоретических лекций (без практики) не двигает его прогресс, то он будет стремиться делать кейсы тоже (хотя есть шанс, что демотивируется), чтобы увидеть больший прогресс</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во выполненных домашних заданий</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Прогресс в портфолио — кол-во загруженных кейсов</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(14,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(14,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(14)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="mot" data-flow="dash" class="r t-mot"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Мотивация и самоорганизация</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Студенты чувствуют изоляцию — нет ощущения учёбы «с кем-то», особенно на тарифе «Релакс».</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Есть ощущение, что наедине просто с материалом. Кто-то стесняется, кто-то не хочет отнимать время. И ты просто сидишь один» (Никита).</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Дашборд</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Групповые активности, тематические регулярные встречи, бейджи — вы в 10% студентов потока, кто уже дошел до жтой лекции</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент видит активность однокурсников, то ощущение изоляции снизится, потому что при учеба в одиночку без контакта с сообществом их демотивирует.</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Субъективная оценка «ощущения поддержки» (опрос)</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Доходимость</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(15,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(15,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(15)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="mot" data-flow="prof" class="r t-mot"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Мотивация и самоорганизация</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Правила тарифа «Хард» непонятны — студенты не знают, что обязательно, что нет, воспринимают отсутствие дедлайнов как баг.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Я шёл и думал: "Сейчас начнётся обязательное!". А обязательных нет. Я подумал: может, это баг?» (Семён). Опрос: Хард 4.7 vs Релакс 5.8.</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Профиль</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Описание тарифа Хард / Релакс в профиле: что обязательно, что нет, дедлайны с визуальным разделением</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если правила тарифа чётко описаны в профиле, то удовлетворённость студентов на Харде вырастет, потому что сейчас они воспринимают отсутствие явных дедлайнов как баг — Хард имеет самый низкий балл (4.7 против 5.8).</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Средняя оценка удовлетворённости студентов Хард</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во вопросов «что обязательно?» в поддержку</span><span class="dir dn">↓ снижается</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(16,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(16,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(16)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="feed" data-flow="dash" class="r t-feed"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Обратная связь</div></td><td><div class="cell " contenteditable="true" spellcheck="false">40% студентов хотели дать фидбек, но не сделали — боялись «выглядеть конфликтными», не знали куда писать или забыли.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag off">Интервью</span><span class="stag on">Опрос</span><span class="stag off">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Опрос: ~40% хотели, но не дали фидбек. Причины: «Не хотелось выглядеть конфликтным» (самый частый), «Сложно найти куда писать», «Потом забылось».</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Дашборд</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Форма анонимной обратной связи: прелзаполенные теги-причины — доступна с главной и со страницы урока и форма для свободного описания из профиля</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если дать студенту возможность оставить фидбек анонимно в два клика, то кол-во единиц обратной связи в месяц вырастет, потому что оба главных барьера — страх и незнание куда писать — снимаются.</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во единиц фидбека в месяц</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(17,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(17,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(17)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="cont" data-flow="lec" class="r t-cont"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Контент и доп. материалы</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Доп. материалы (книги, статьи, видео) встроены в Figma-презентацию — студент уходит по ссылкам во время лекции и теряет фокус («кроличья нора»).</div></td><td class="src-td"><div class="src-inner"><span class="stag on">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag off">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Ссылки отвлекают! Я иду по курсу зигзагами. Давать их отдельным блоком под лекцией?» (Юлия). UX-аудит: «Вероятность вернуться к ним (ссылкам) была почти нулевой».</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Лекции</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Вкладка «Материалы» под каждым уроком — все ссылки отдельно от плеера/презентации, можно сохранить</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если доп. материалы вынесены в отдельную вкладку, то глубина изучения информации вырастет, потому что сейчас студенты уходят по ссылкам прямо во время лекции либо не возвращаются к ним после</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Ср. длительность непрерывной сессии просмотра</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Доля студентов, открывавших доп. материалы</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(18,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(18,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(18)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="cont" data-flow="lec" class="r t-cont"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Контент и доп. материалы</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Студенты хотят выбирать лекцию под текущий контекст (телефон/компьютер, 20 минут/час), но нет фильтрации.</div></td><td class="src-td"><div class="src-inner"><span class="stag on">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag off">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Лайтовые лекции смотрю с телефона, хардкорные — только с ноутбука» (Семён). UX-аудит: «Хотела выбирать видео по ресурсу». Опрос: 80% смотрят только с компьютера.</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Лекции</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Фильтры в списке уроков: по длительности (до 20 мин / 20–45 мин / 45+), по типу, по статусу</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент может отфильтровать уроки под текущий ресурс, то частота просмотров вырастет, потому что студенты готовы учиться на телефоне в короткие окна, но не знают, какие уроки подходят.</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Доля просмотров с мобильного устройства</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во просмотренных уроков в неделю</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(19,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(19,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(19)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="cont" data-flow="lec" class="r t-cont"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Контент и доп. материалы</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Студенты возвращаются к просмотру несколько раз. Нет таймкодов к видео — при повторном просмотре невозможно быстро найти нужный момент.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag off">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «В Uprock выписывали таймкоды. Это сократило бы время поиска» (Никита). Опрос: студенты активно используют ускорение 1.5–1.75×.</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Лекции</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Кликабельные таймкоды под плеером: главы лекции с метками времени  кнопка сохранить в избранное</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент может перейти к нужному моменту одним кликом, то повторные просмотры вырастут и время на поиск нужного момента снизится</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во повторных просмотров</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Ср. время до нахождения нужного момента</span><span class="dir dn">↓ снижается</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(20,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(20,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(20)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="cont" data-flow="prof" class="r t-cont"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Контент и доп. материалы</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Статус домашних заданий непонятен — интерфейс предлагает «отправить», хотя это необязательно. На Харде неясно, какие ДЗ обязательны.
-
-Вообще по домашним заданиям много эмоциональных жалоб https://docs.google.com/document/d/1CWuCdQxUNWQqvfqgFk2JGb1Ego4j7r6LEVThq4UePA0/edit?usp=sharing
-</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag off">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Интервью: «Я шёл и думал: сейчас начнётся обязательное! А обязательных нет. Может, это баг?» (Семён). Поддержка: кнопка «Начать/Завершить задание» сбивает студентов с толку.</div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Профиль</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Инструкция по тарифам в профиле 
-
-<br></div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если правила ДЗ прозрачно описаны в профиле, то кол-во орг. вопросов по тарифам снизится</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во вопросов по статусу ДЗ в поддержку</span><span class="dir dn">↓ снижается</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">Кол-во выполненных необязательных ДЗ</span><span class="dir up">↑ растёт</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(21,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(21,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(21)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="nav" data-flow="prof" class="r t-nav"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Навигация и информационная перегрузка</div></td><td><div class="cell " contenteditable="true" spellcheck="false">Показ сроков доступа в профиле.</div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag on">Интервью</span><span class="stag on">Опрос</span><span class="stag on">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false">Опрос: студенты узнают о дедлайнах слишком поздно/ не знают о них в процессе — и их консультации сгорают </div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Профиль</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false">Объяснение тарифов Релакс / Хард на платформе+ виджет «Ваш доступ» с первого дня доступа</div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false">Если студент видит сроки сгорания доступа, то доля использованных консультаций в первые 8 недель вырастет, потому что студенты смогут распределять свои лимиты более равномерно</div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования"><ul class="met-list"><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">% консультаций, использованных в первые 8 недель</span><span class="dir up">↑ растёт</span></li><li class="met-item"><span class="met-dot" style="background: var(--text3);"></span><span class="met-label">% сгоревших слотов</span><span class="dir dn">↓ снижается</span></li></ul></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(22,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(22,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(22)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr data-topic="nav" data-flow="admin" class="r t-nav"><td><div class="cell topic-cell" contenteditable="true" spellcheck="false">Навигация и информационная перегрузка</div></td><td><div class="cell " contenteditable="true" spellcheck="false"></div></td><td class="src-td"><div class="src-inner"><span class="stag off">UX-аудит</span><span class="stag off">Интервью</span><span class="stag off">Опрос</span><span class="stag off">Поддержка</span></div></td><td><div class="cell quote-cell" contenteditable="true" spellcheck="false"></div></td><td class="flow-td"><div class="flow-inner"><span class="flow-text" title="Нажмите для смены флоу">Администрирование</span></div></td><td><div class="cell " contenteditable="true" spellcheck="false"></div></td><td><div class="cell hypo-cell" contenteditable="true" spellcheck="false"></div></td><td class="met-td"><div class="met-inner" title="Нажмите для редактирования" style="min-height: 44px;"></div><textarea class="met-editor" placeholder="Каждая метрика с новой строки.
-Начните с ↑ или ↓ для направления.
-Пример:
-↑ Кол-во просмотров
-↓ Обращения в поддержку"></textarea></td><td class="ctrl-td"><div class="ctrl-inner">
-      <button class="ic" onclick="moveRow(23,-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"></polyline></svg></button>
-      <button class="ic" onclick="moveRow(23,1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"></polyline></svg></button>
-      <button class="ic del" onclick="delRow(23)" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"></line><line x1="10" y1="2" x2="2" y2="10"></line></svg></button>
-    </div></td></tr><tr class="add-tr"><td colspan="9"><button class="add-btn" onclick="addRow()">＋ Добавить строку</button></td></tr></tbody>
+  <tbody id="tableBody"></tbody>
 </table>
 </div>
 
@@ -447,7 +253,7 @@
   <div class="modal">
     <h2>Добавить столбец</h2>
     <label>Название</label>
-    <input type="text" id="newColName" placeholder="Например: Приоритет">
+    <input type="text" id="newColName" placeholder="Например: Приоритет"/>
     <label>Вставить после</label>
     <select id="newColPos">
       <option value="topic">Тема</option>
@@ -457,7 +263,7 @@
       <option value="flow">Флоу</option>
       <option value="task">Что делаем</option>
       <option value="hypothesis">Гипотеза</option>
-      <option value="metrics" selected="">Метрики</option>
+      <option value="metrics" selected>Метрики</option>
     </select>
     <div class="modal-act">
       <button class="btn" onclick="closeAddCol()">Отмена</button>
@@ -466,7 +272,7 @@
   </div>
 </div>
 
-<div class="notif" id="notif">Удалено</div>
+<div class="notif" id="notif"></div>
 
 <script>
 const TAGS = [
@@ -498,56 +304,618 @@ let activeFlowFilter = 'all';
 function r(){return 'n'+Date.now()+Math.random().toString(36).slice(2,6);}
 
 let tableData = [
-  {id:r(),topic:'nav',problem:'Учеба разбросана по 5–9 инструментам: платформа, Telegram-чаты, бот, Notion, блокнот, куратор в личке. Нет единого места для учёбы.',sources:['ux','int','surv','sup'],proof:'Опрос: студенты 14 потока используют до 9 инструментов одновременно. Интервью: «На том курсе всё было в одном месте — это мой фетиш» (Милана).',flow:'dash',task:'Единый дашборд с расписанием, ссылками на лекции, записью к менторам и блоком «Команда»',hypothesis:'Если студент находит всё в одном месте, то кол-во орг. обращений к куратору снизится, потому что сейчас 60% студентов пишут куратору лично из-за непонимания куда обращаться.',metrics:[{label:'Кол-во орг. обращений к куратору',dir:'dn'},{label:'Удовлетворённость организацией (опрос)',dir:'up'}]},
+  {
+    "id": "n7r70du3h",
+    "topic": "nav",
+    "problem": "ТестУчеба разбросана по 5–9 инструментам: платформа, Telegram-чаты, бот, Notion, блокнот, куратор в личке. Нет единого места для учёбы.",
+    "sources": [
+      "ux",
+      "int",
+      "surv",
+      "sup"
+    ],
+    "proof": "Опрос: студенты 14 потока используют до 9 инструментов одновременно. Интервью: «На том курсе всё было в одном месте — это мой фетиш» (Милана).",
+    "flow": "dash",
+    "task": "Единый дашборд с расписанием, ссылками на лекции, записью к менторам и информацией по курсу",
+    "hypothesis": "Если студент может найти информацию в едином окне, то кол-во орг. обращений к куратору снизится, потому что сейчас 60% студентов пишут куратору лично из-за непонимания где посмотреть информацию",
+    "metrics": [
+      {
+        "label": "Кол-во орг. обращений к куратору",
+        "dir": "dn"
+      },
+      {
+        "label": "Удовлетворённость организацией (опрос)",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "nxenku2ws",
+    "topic": "nav",
+    "problem": "Студенты не знают, где искать ответы на возникающие — пишут всё одному куратору в личку или в чат. Вопросы в поддержку постоянно повторяются.",
+    "sources": [
+      "int",
+      "sup",
+      "surv"
+    ],
+    "proof": "Интервью: «Чтобы посмотреть, кто за что отвечает, в чате надо далеко листать вверх» (Кристина). Опрос: 60% опрошенных студентов 13 потока уточняют орг. вопросы у куратора лично после 4 месяцев.",
+    "flow": "dash",
+    "task": "Информация в профиле студента, которая закрывает большинство вопросов",
+    "hypothesis": "Если в профиле студента есть структурированная информация по курсу, то загрузка команды поддержки снизится",
+    "metrics": [
+      {
+        "label": "Кол-во орг. обращений к куратору в личку",
+        "dir": "dn"
+      },
+      {
+        "label": "Загрузка команды поддержки",
+        "dir": "dn"
+      }
+    ]
+  },
+  {
+    "id": "n7t8th1ly",
+    "topic": "nav",
+    "problem": "Слишком много Telegram-чатов (студенты насчитывают до 10+) — непонятно, в каком искать нужную информацию.",
+    "sources": [
+      "int",
+      "sup",
+      "surv"
+    ],
+    "proof": "Интервью: «Требуется вынимание мозга из задачи, чтобы вникнуть, в каком чате смотреть инфу. Я заблудилась» (Юлия). Поддержка: студенты пропускают важную информацию.",
+    "flow": "cal",
+    "task": "Дублирование ключевых анонсов на платформе (ссылки на эфиры, записи, консультации)",
+    "hypothesis": "Если важные события отображаются на платформе независимо от Telegram, то кол-во пропущенных важных событий снизится, потому что часть студентов теряет доступ к Telegram/пропускает сообщения.",
+    "metrics": [
+      {
+        "label": "Кол-во обращений в поддержку",
+        "dir": "dn"
+      },
+      {
+        "label": "Охват учебных эфиров",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "nljnm6ly8",
+    "topic": "prog",
+    "problem": "Нет визуального трекера прогресса — студенты не могут отметить просмотренный урок и не видят, сколько уже пройдено.",
+    "sources": [
+      "ux",
+      "int",
+      "sup"
+    ],
+    "proof": "UX-аудит: «Хотелось отмечать пройденные лекции и получать дофаминовое подкрепление, расставляя галочки». Поддержка: нельзя поставить галочку напротив просмотренного урока — только если прокликать ОС или домашку",
+    "flow": "lec",
+    "task": "Прогресс-бар по модулю + чекбоксы «Просмотрено» у каждого урока + визуальный дашборд курса",
+    "hypothesis": "Если студент видит визуальный прогресс и отмечает уроки галочкой, то доходимость курса вырастет, потому что дофаминовое подкрепление от закрытых чекбоксов поддерживает мотивацию особенно без внешних дедлайнов.",
+    "metrics": [
+      {
+        "label": "Доля студентов, завершивших курс",
+        "dir": "up"
+      },
+      {
+        "label": "Кол-во просмотренных уроков на студента",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "nbqxwhocw",
+    "topic": "prog",
+    "problem": "Студенты не понимают, идут ли они в нужном темпе — ориентируются на общий чат, что вызывает тревогу и ощущение отставания.",
+    "sources": [
+      "int",
+      "surv"
+    ],
+    "proof": "Интервью: «Мне кажется, я везде опаздываю. Смотрю в чат — там обсуждают что-то далеко впереди» (Кристина); «Супер насущный вопрос — еду ли я с нужной скоростью» (Никита).",
+    "flow": "dash",
+    "task": "Трекер прогресса самого студента и ориентиры (например, по неделям)",
+    "hypothesis": "Если студент видит объективный индикатор своего темпа, то тревожность снизится, потому что появится личный ориентир и отпадёт необходимость сравнивать себя с другими в чате.",
+    "metrics": [
+      {
+        "label": "Оценка удовлетворённости — NPS",
+        "dir": "up"
+      },
+      {
+        "label": "Доходимость",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "nxw1ucbz0",
+    "topic": "prog",
+    "problem": "Нигде не отображаются сроки сгорания доступа к чату и консультациям — студенты думают, что доступ бессрочный.",
+    "sources": [
+      "int",
+      "sup"
+    ],
+    "proof": "Интервью: «Информации о лимитах нет вообще! Я видела таблички на продающих стримах, но в курсе акцента не помню» (Юлия). «Этот дедлайн настолько далеко, что я не волнуюсь» (Кристина).",
+    "flow": "dash",
+    "task": "Блок «Ваш доступ»: ... дней до сгорания консультаций, уведомления за 14 и 7 дней",
+    "hypothesis": "Если студент видит конкретный дедлайн сгорания консультаций на дашборде, то доля использованных консультаций вырастет, потому что 75% студентов не берут консультации — и одна из причин — «дедлайн кажется очень далёким».",
+    "metrics": [
+      {
+        "label": "% использованных консультаций от лимита",
+        "dir": "up"
+      },
+      {
+        "label": "% сгоревших неиспользованных слотов",
+        "dir": "dn"
+      }
+    ]
+  },
+  {
+    "id": "nt2vwnutr",
+    "topic": "plan",
+    "problem": "Учебные эфиры пересекаются с маркетинговыми — студенты не понимают, что обязательно посетить, испытывают тревогу и чувство «упущенного».",
+    "sources": [
+      "int",
+      "sup"
+    ],
+    "proof": "Интервью: «Расписание 13 и 14 потока было вместе. Я собралась на чужой челлендж в 10 утра. Чёткого понимания расписания нет до сих пор» (Юлия).",
+    "flow": "cal",
+    "task": "Персональный календарь потока — только учебные активности конкретного студента",
+    "hypothesis": "Если в календаре только события потока студента, то кол-во пропущенных учебных эфиров снизится, потому что смешение расписаний приводит к тому, что студенты приходят на чужие эфиры или пропускают свои.",
+    "metrics": [
+      {
+        "label": "% посещаемых учебных эфиров",
+        "dir": "up"
+      },
+      {
+        "label": "Кол-во орг. вопросов по расписанию",
+        "dir": "dn"
+      }
+    ]
+  },
+  {
+    "id": "nwruhd8vi",
+    "topic": "plan",
+    "problem": "Нет единой страницы с организационными данными — студенты не знают, где платить рассрочку, путаются в неделях программы.",
+    "sources": [
+      "int",
+      "sup"
+    ],
+    "proof": "Интервью: «У меня рассрочка. Я вообще не понимала, где и как платить второй платёж. Пришлось искать куратора в личке» (Юлия).",
+    "flow": "prof",
+    "task": "Блок «Мой курс» в профиле: тариф, текущая неделя, сроки доступа, статус оплаты рассрочки",
+    "hypothesis": "Если информация о курсе и оплате собрана в профиле, то орг. обращения к кураторам снизятся и своевременность оплат вырастет.",
+    "metrics": [
+      {
+        "label": "Кол-во орг. обращений к кураторам",
+        "dir": "dn"
+      },
+      {
+        "label": "% платежей, поступивших в срок",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "npdhw1254",
+    "topic": "plan",
+    "problem": "Невозможно учесть длительность лекций при планировании, студенты перегружают себя или теряют ритм. Длинные лекции пугают.",
+    "sources": [
+      "ux",
+      "int"
+    ],
+    "proof": "UX-аудит: «Нужен планировщик, где учитываются задачи и примерное время на лекции». Интервью: «Нужно в курсе ставить вехи-ориентиры» (Юлия).",
+    "flow": "lec",
+    "task": "Метка длительности с учётом скорости воспроизведения + метка «Удобно с телефона»",
+    "hypothesis": "Если студент видит реальную длительность урока с учётом скорости, то регулярность учёбы вырастет, потому что можно подобрать урок под доступное временное окно.",
+    "metrics": [
+      {
+        "label": "Регулярность — дней с активностью в неделю",
+        "dir": "up"
+      },
+      {
+        "label": "Доходимость",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "n2gct2g6t",
+    "topic": "cons",
+    "problem": "75% опрошенных студентов не взяли ни одной консультации (13 поток — 0%). Барьеры: «нечего показать», «не знаю, когда пора», «боюсь потратить лимит впустую».",
+    "sources": [
+      "int",
+      "surv",
+      "sup"
+    ],
+    "proof": "Опрос: ~75% ещё не брали консультацию; 13 поток — 0% (ни один из 10 респондентов). Интервью: «Мне нечего предъявить. Хочу прийти с чем-то стоящим» (Милана).",
+    "flow": "cons",
+    "task": "Каталог менторов с компетенциями + блок «С чем прийти прямо сейчас» (карточки примеров)",
+    "hypothesis": "Если рядом с кнопкой записи есть примеры вопросов, с которыми можно прийти прямо сейчас, то барьер «мне нечего показать» снизится, потому что студенты не знают, что консультация возможна без готового портфолио/идеального кейса",
+    "metrics": [
+      {
+        "label": "% студентов, взявших хотя бы одну консультацию",
+        "dir": "up"
+      },
+      {
+        "label": "Ср. кол-во консультаций на студента",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "nxswe43yx",
+    "topic": "cons",
+    "problem": "Студенты не могут понять, как записаться технически — бросают попытку и «забивают», спрашивают в личке",
+    "sources": [
+      "int",
+      "sup",
+      "surv"
+    ],
+    "proof": "Интервью: «Запись к менторам — главная проблема!» (Кристина); «Я не знала, как записаться — ну и не записывалась. Просто забила» (Кристина).",
+    "flow": "cons",
+    "task": "Встроенная запись на консультацию на платформе без перехода Telegram-бот",
+    "hypothesis": "Если запись осуществляется в одном месте, то кол-во записей вырастет, потому что студенты «забивали» когда не понимали техническую механику",
+    "metrics": [
+      {
+        "label": "Кол-во записей на консультацию в неделю",
+        "dir": "up"
+      },
+      {
+        "label": "Кол-во орг. вопросов «как записаться»",
+        "dir": "dn"
+      }
+    ]
+  },
+  {
+    "id": "nyb2oab2s",
+    "topic": "cons",
+    "problem": "Студенты не знают своих лимитов консультаций и когда они сгорят — информация отсутствует внутри курса.",
+    "sources": [
+      "int",
+      "surv"
+    ],
+    "proof": "Интервью: «Информации о лимитах нет вообще. Я видела таблички на стримах, но в курсе акцента не помню» (Юлия); «Появились сомнения, это бросило в смятение» (Никита).",
+    "flow": "dash",
+    "task": "Счётчик консультаций «Осталось X из N» с подсказкой, после каких модулей брать",
+    "hypothesis": "Если студент видит остаток лимита и контекстную подсказку, то он перестанет откладывать запись до «идеального момента», потому что исчезает страх потратить лимит впустую.",
+    "metrics": [
+      {
+        "label": "% сгоревших неиспользованных слотов",
+        "dir": "dn"
+      },
+      {
+        "label": "Воспринимаемая ценность курса",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "nmix734pm",
+    "topic": "cons",
+    "problem": "Нет страницы с информацией о предстоящих и прошедших консультациях — сложно подготовиться и вернуться к материалам.",
+    "sources": [
+      "int"
+    ],
+    "proof": "Интервью: Студенты не знают, где найти ссылку на предстоящую консультацию",
+    "flow": "cons",
+    "task": "Блок «Предстоящие»: ссылка Yandex.Telemost + дата/время/ментор. Архив: даты, заметки, видеозаписи",
+    "hypothesis": "Если ссылка и история консультаций доступны на платформе, то посещаемость вырастет",
+    "metrics": [
+      {
+        "label": "% посещаемых консультаций",
+        "dir": "up"
+      },
+      {
+        "label": "Повторные записи на консультацию",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "nbopmy8oc",
+    "topic": "mot",
+    "problem": "Открытый доступ ко всему объёму материалов сразу пугает студентов — они видят огромный курс, теряют мотивацию и прокрастинируют учёбу.",
+    "sources": [
+      "sup",
+      "int"
+    ],
+    "proof": "Интервью: «Свободный формат — только для очень организованных людей» (Юлия).",
+    "flow": "dash",
+    "task": "Режим «Фокус недели»: 3–5 рекомендованных уроков — остальное доступно, но не давит",
+    "hypothesis": "Если студент видит короткий список приоритетных уроков на неделю, то доля бросивших учёбу в первые 4 недели снизится, потому что открытый объём вызывает паралич",
+    "metrics": [
+      {
+        "label": "Доля «брошенных» студентов (нет активности > 14 дней)",
+        "dir": "dn"
+      },
+      {
+        "label": "Доходимость",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "n7iu5jdjj",
+    "topic": "mot",
+    "problem": "«Продуктивная прокрастинация»: студенты смотрят лекции вместо практики — прогресса в портфолио нет, наступает выгорание.",
+    "sources": [
+      "surv",
+      "int"
+    ],
+    "proof": "Опрос: «Пару раз я демотивировалась, потому что слишком много смотрела, а портфолио не переделала». Интервью: «В день можно сделать либо одно, либо другое» (Никита).",
+    "flow": "dash",
+    "task": "Информация о вкладе теоретических занятий и практики/кейсов в прогресс — где теоретические лекции составляют его меньшую долю",
+    "hypothesis": "Если студент будет видеть (н а графике), что просмотр только теоретических лекций (без практики) не двигает его прогресс, то он будет стремиться делать кейсы тоже (хотя есть шанс, что демотивируется), чтобы увидеть больший прогресс",
+    "metrics": [
+      {
+        "label": "Кол-во выполненных домашних заданий",
+        "dir": "up"
+      },
+      {
+        "label": "Прогресс в портфолио — кол-во загруженных кейсов",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "n0fgpfoc2",
+    "topic": "mot",
+    "problem": "Студенты чувствуют изоляцию — нет ощущения учёбы «с кем-то», особенно на тарифе «Релакс».",
+    "sources": [
+      "int",
+      "sup"
+    ],
+    "proof": "Интервью: «Есть ощущение, что наедине просто с материалом. Кто-то стесняется, кто-то не хочет отнимать время. И ты просто сидишь один» (Никита).",
+    "flow": "dash",
+    "task": "Групповые активности, тематические регулярные встречи, бейджи — вы в 10% студентов потока, кто уже дошел до жтой лекции",
+    "hypothesis": "Если студент видит активность однокурсников, то ощущение изоляции снизится, потому что при учеба в одиночку без контакта с сообществом их демотивирует.",
+    "metrics": [
+      {
+        "label": "Субъективная оценка «ощущения поддержки» (опрос)",
+        "dir": "up"
+      },
+      {
+        "label": "Доходимость",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "ntgqsqq70",
+    "topic": "mot",
+    "problem": "Правила тарифа «Хард» непонятны — студенты не знают, что обязательно, что нет, воспринимают отсутствие дедлайнов как баг.",
+    "sources": [
+      "int",
+      "sup"
+    ],
+    "proof": "Интервью: «Я шёл и думал: \"Сейчас начнётся обязательное!\". А обязательных нет. Я подумал: может, это баг?» (Семён). Опрос: Хард 4.7 vs Релакс 5.8.",
+    "flow": "prof",
+    "task": "Описание тарифа Хард / Релакс в профиле: что обязательно, что нет, дедлайны с визуальным разделением",
+    "hypothesis": "Если правила тарифа чётко описаны в профиле, то удовлетворённость студентов на Харде вырастет, потому что сейчас они воспринимают отсутствие явных дедлайнов как баг — Хард имеет самый низкий балл (4.7 против 5.8).",
+    "metrics": [
+      {
+        "label": "Средняя оценка удовлетворённости студентов Хард",
+        "dir": "up"
+      },
+      {
+        "label": "Кол-во вопросов «что обязательно?» в поддержку",
+        "dir": "dn"
+      }
+    ]
+  },
+  {
+    "id": "nzctdn1g9",
+    "topic": "feed",
+    "problem": "40% студентов хотели дать фидбек, но не сделали — боялись «выглядеть конфликтными», не знали куда писать или забыли.",
+    "sources": [
+      "surv"
+    ],
+    "proof": "Опрос: ~40% хотели, но не дали фидбек. Причины: «Не хотелось выглядеть конфликтным» (самый частый), «Сложно найти куда писать», «Потом забылось».",
+    "flow": "dash",
+    "task": "Форма анонимной обратной связи: прелзаполенные теги-причины — доступна с главной и со страницы урока и форма для свободного описания из профиля",
+    "hypothesis": "Если дать студенту возможность оставить фидбек анонимно в два клика, то кол-во единиц обратной связи в месяц вырастет, потому что оба главных барьера — страх и незнание куда писать — снимаются.",
+    "metrics": [
+      {
+        "label": "Кол-во единиц фидбека в месяц",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "n1ljgyq04",
+    "topic": "cont",
+    "problem": "Доп. материалы (книги, статьи, видео) встроены в Figma-презентацию — студент уходит по ссылкам во время лекции и теряет фокус («кроличья нора»).",
+    "sources": [
+      "int",
+      "ux"
+    ],
+    "proof": "Интервью: «Ссылки отвлекают! Я иду по курсу зигзагами. Давать их отдельным блоком под лекцией?» (Юлия). UX-аудит: «Вероятность вернуться к ним (ссылкам) была почти нулевой».",
+    "flow": "lec",
+    "task": "Вкладка «Материалы» под каждым уроком — все ссылки отдельно от плеера/презентации, можно сохранить",
+    "hypothesis": "Если доп. материалы вынесены в отдельную вкладку, то глубина изучения информации вырастет, потому что сейчас студенты уходят по ссылкам прямо во время лекции либо не возвращаются к ним после",
+    "metrics": [
+      {
+        "label": "Ср. длительность непрерывной сессии просмотра",
+        "dir": "up"
+      },
+      {
+        "label": "Доля студентов, открывавших доп. материалы",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "n1oit2rc6",
+    "topic": "cont",
+    "problem": "Студенты хотят выбирать лекцию под текущий контекст (телефон/компьютер, 20 минут/час), но нет фильтрации.",
+    "sources": [
+      "int",
+      "ux",
+      "surv"
+    ],
+    "proof": "Интервью: «Лайтовые лекции смотрю с телефона, хардкорные — только с ноутбука» (Семён). UX-аудит: «Хотела выбирать видео по ресурсу». Опрос: 80% смотрят только с компьютера.",
+    "flow": "lec",
+    "task": "Фильтры в списке уроков: по длительности (до 20 мин / 20–45 мин / 45+), по типу, по статусу",
+    "hypothesis": "Если студент может отфильтровать уроки под текущий ресурс, то частота просмотров вырастет, потому что студенты готовы учиться на телефоне в короткие окна, но не знают, какие уроки подходят.",
+    "metrics": [
+      {
+        "label": "Доля просмотров с мобильного устройства",
+        "dir": "up"
+      },
+      {
+        "label": "Кол-во просмотренных уроков в неделю",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "nml9dhmah",
+    "topic": "cont",
+    "problem": "Студенты возвращаются к просмотру несколько раз. Нет таймкодов к видео — при повторном просмотре невозможно быстро найти нужный момент.",
+    "sources": [
+      "int",
+      "surv"
+    ],
+    "proof": "Интервью: «В Uprock выписывали таймкоды. Это сократило бы время поиска» (Никита). Опрос: студенты активно используют ускорение 1.5–1.75×.",
+    "flow": "lec",
+    "task": "Кликабельные таймкоды под плеером: главы лекции с метками времени  кнопка сохранить в избранное",
+    "hypothesis": "Если студент может перейти к нужному моменту одним кликом, то повторные просмотры вырастут и время на поиск нужного момента снизится",
+    "metrics": [
+      {
+        "label": "Кол-во повторных просмотров",
+        "dir": "up"
+      },
+      {
+        "label": "Ср. время до нахождения нужного момента",
+        "dir": "dn"
+      }
+    ]
+  },
+  {
+    "id": "nhdbc2gp2",
+    "topic": "cont",
+    "problem": "Статус домашних заданий непонятен — интерфейс предлагает «отправить», хотя это необязательно. На Харде неясно, какие ДЗ обязательны.
 
-  {id:r(),topic:'nav',problem:'Студенты не знают, кто за что отвечает — пишут всё одному куратору в личку. Вопросы в поддержку постоянно повторяются.',sources:['int','sup','surv'],proof:'Интервью: «Чтобы посмотреть, кто за что отвечает, в чате надо далеко листать вверх» (Кристина). Опрос: 60% студентов 13 потока уточняют орг. вопросы у куратора лично после 4 месяцев.',flow:'dash',task:'Блок «Команда» на дашборде: карточки с именами, ролями и кнопками связи',hypothesis:'Если на дашборде есть чёткий блок с тем, кто за что отвечает, то загрузка команды поддержки снизится, потому что главная причина обращений — незнание нужного контакта.',metrics:[{label:'Кол-во орг. обращений к куратору в личку',dir:'dn'},{label:'Загрузка команды поддержки',dir:'dn'}]},
-
-  {id:r(),topic:'nav',problem:'Слишком много Telegram-чатов (студенты насчитывают до 10+) — непонятно, в каком искать нужную информацию.',sources:['int','sup','surv'],proof:'Интервью: «Требуется вынимание мозга из задачи, чтобы вникнуть, в каком чате смотреть инфу. Я заблудилась» (Юлия). Поддержка: студенты пропускают важную информацию.',flow:'cal',task:'Дублирование ключевых анонсов на платформе (ссылки на эфиры, записи, консультации)',hypothesis:'Если важные события отображаются на платформе независимо от Telegram, то кол-во пропущенных важных событий снизится, потому что часть студентов теряет доступ к Telegram через VPN.',metrics:[{label:'Кол-во обращений «дайте ссылку на эфир»',dir:'dn'},{label:'Охват учебных эфиров',dir:'up'}]},
-
-  {id:r(),topic:'prog',problem:'Нет визуального трекера прогресса — студенты не могут отметить просмотренный урок и не видят, сколько уже пройдено.',sources:['ux','int','sup'],proof:'UX-аудит: «Хотелось отмечать пройденные лекции и получать дофаминовое подкрепление, расставляя галочки». Поддержка: нельзя поставить галочку напротив просмотренного урока.',flow:'dash',task:'Прогресс-бар по модулю + чекбоксы «Просмотрено» у каждого урока + визуальный дашборд курса',hypothesis:'Если студент видит визуальный прогресс и отмечает уроки галочкой, то доходимость курса вырастет, потому что дофаминовое подкрепление от закрытых чекбоксов поддерживает мотивацию особенно без внешних дедлайнов.',metrics:[{label:'Доля студентов, завершивших курс',dir:'up'},{label:'Кол-во просмотренных уроков на студента',dir:'up'}]},
-
-  {id:r(),topic:'prog',problem:'Студенты не понимают, идут ли они в нужном темпе — ориентируются на общий чат, что вызывает тревогу и ощущение отставания.',sources:['int','surv'],proof:'Интервью: «Мне кажется, я везде опаздываю. Смотрю в чат — там обсуждают что-то далеко впереди» (Кристина); «Супер насущный вопрос — еду ли я с нужной скоростью» (Никита).',flow:'dash',task:'Трекер темпа «вы идёте в темпе / немного отстаёте / опережаете» на основе личного плана',hypothesis:'Если студент видит объективный индикатор своего темпа, то тревожность снизится, потому что появится личный ориентир и отпадёт необходимость сравнивать себя с другими в чате.',metrics:[{label:'Оценка удовлетворённости — NPS',dir:'up'},{label:'Доходимость',dir:'up'}]},
-
-  {id:r(),topic:'prog',problem:'Нигде не отображаются сроки сгорания доступа к чату и консультациям — студенты думают, что доступ бессрочный.',sources:['int','sup'],proof:'Интервью: «Информации о лимитах нет вообще! Я видела таблички на продающих стримах, но в курсе акцента не помню» (Юлия). «Этот дедлайн настолько далеко, что я не волнуюсь» (Кристина).',flow:'dash',task:'Виджет «Ваш доступ»: дней до закрытия чата и сгорания консультаций, уведомления за 14 и 7 дней',hypothesis:'Если студент видит конкретный дедлайн сгорания консультаций на дашборде, то доля использованных консультаций вырастет, потому что 75% студентов не берут консультации — и одна из причин — «дедлайн кажется очень далёким».',metrics:[{label:'% использованных консультаций от лимита',dir:'up'},{label:'% сгоревших неиспользованных слотов',dir:'dn'}]},
-
-  {id:r(),topic:'plan',problem:'Учебные эфиры пересекаются с маркетинговыми — студенты не понимают, что обязательно посетить, испытывают тревогу и чувство «упущенного».',sources:['int','sup'],proof:'Интервью: «Расписание 13 и 14 потока было вместе. Я собралась на чужой челлендж в 10 утра. Чёткого понимания расписания нет до сих пор» (Юлия).',flow:'cal',task:'Персональный календарь потока — только учебные активности конкретного студента',hypothesis:'Если в календаре только события потока студента, то кол-во пропущенных учебных эфиров снизится, потому что смешение расписаний приводит к тому, что студенты приходят на чужие эфиры или пропускают свои.',metrics:[{label:'% посещаемых учебных эфиров',dir:'up'},{label:'Кол-во орг. вопросов по расписанию',dir:'dn'}]},
-
-  {id:r(),topic:'plan',problem:'Нет единой страницы с организационными данными — студенты не знают, где платить рассрочку, путаются в неделях программы.',sources:['int','sup'],proof:'Интервью: «У меня рассрочка. Я вообще не понимала, где и как платить второй платёж. Пришлось искать куратора в личке» (Юлия).',flow:'prof',task:'Блок «Мой курс» в профиле: тариф, текущая неделя, сроки доступа, статус оплаты рассрочки',hypothesis:'Если информация о курсе и оплате собрана в профиле, то орг. обращения к кураторам снизятся и своевременность оплат вырастет.',metrics:[{label:'Кол-во орг. обращений к кураторам',dir:'dn'},{label:'% платежей, поступивших в срок',dir:'up'}]},
-
-  {id:r(),topic:'plan',problem:'Невозможно учесть длительность лекций при планировании, студенты перегружают себя или теряют ритм.',sources:['ux','int'],proof:'UX-аудит: «Нужен планировщик, где учитываются задачи и примерное время на лекции». Интервью: «Нужно в курсе ставить вехи-ориентиры» (Юлия).',flow:'lec',task:'Метка длительности с учётом скорости воспроизведения + метка «Удобно с телефона»',hypothesis:'Если студент видит реальную длительность урока с учётом скорости, то регулярность учёбы вырастет, потому что можно подобрать урок под доступное временное окно.',metrics:[{label:'Регулярность — дней с активностью в неделю',dir:'up'},{label:'Доходимость',dir:'up'}]},
-
-  {id:r(),topic:'cons',problem:'75% студентов не взяли ни одной консультации (13 поток — 0%). Барьеры: «нечего показать», «не знаю, когда пора», «боюсь потратить лимит впустую».',sources:['int','surv','sup'],proof:'Опрос: ~75% ещё не брали консультацию; 13 поток — 0% (ни один из 10 респондентов). Интервью: «Мне нечего предъявить. Хочу прийти с чем-то стоящим» (Милана).',flow:'cons',task:'Каталог менторов с компетенциями + блок «С чем прийти прямо сейчас» (карточки примеров)',hypothesis:'Если рядом с кнопкой записи есть примеры вопросов, с которыми можно прийти прямо сейчас, то барьер «мне нечего показать» снизится, потому что студенты не знают, что консультация возможна без готового портфолио.',metrics:[{label:'% студентов, взявших хотя бы одну консультацию',dir:'up'},{label:'Ср. кол-во консультаций на студента',dir:'up'}]},
-
-  {id:r(),topic:'cons',problem:'Студенты не могут найти расписание менторов и понять, как записаться технически — бросают попытку и «забивают».',sources:['int','sup','surv'],proof:'Интервью: «Запись к менторам — главная проблема! Люди постоянно спрашивают одно и то же» (Кристина); «Я не знала, как записаться — ну и не записывалась. Просто забила» (Кристина).',flow:'cons',task:'Встроенная запись на консультацию на платформе без перехода в YClients или Telegram-бот',hypothesis:'Если запись осуществляется в одном месте без переходов, то кол-во записей вырастет, потому что студенты «забивали» когда не понимали техническую механику — одна студентка узнала о боте только на интервью.',metrics:[{label:'Кол-во записей на консультацию в неделю',dir:'up'},{label:'Кол-во орг. вопросов «как записаться»',dir:'dn'}]},
-
-  {id:r(),topic:'cons',problem:'Студенты не знают своих лимитов консультаций и когда они сгорят — информация отсутствует внутри курса.',sources:['int','surv'],proof:'Интервью: «Информации о лимитах нет вообще. Я видела таблички на стримах, но в курсе акцента не помню» (Юлия); «Появились сомнения, это бросило в смятение» (Никита).',flow:'dash',task:'Счётчик консультаций «Осталось X из N» с подсказкой, после каких модулей брать',hypothesis:'Если студент видит остаток лимита и контекстную подсказку, то он перестанет откладывать запись до «идеального момента», потому что исчезает страх потратить лимит впустую.',metrics:[{label:'% сгоревших неиспользованных слотов',dir:'dn'},{label:'Воспринимаемая ценность тарифа (опрос)',dir:'up'}]},
-
-  {id:r(),topic:'cons',problem:'Нет страницы с информацией о предстоящих и прошедших консультациях — сложно подготовиться и вернуться к материалам.',sources:['int'],proof:'Интервью: Студенты не знают, где найти ссылку на предстоящую консультацию и не могут вернуться к видеозаписям прошедших встреч.',flow:'cons',task:'Блок «Предстоящие»: ссылка Yandex.Telemost + дата/время/ментор. Архив: даты, заметки, видеозаписи',hypothesis:'Если ссылка и история консультаций доступны на платформе, то посещаемость вырастет, а воспринимаемая ценность консультаций повысится.',metrics:[{label:'% посещаемых консультаций',dir:'up'},{label:'Повторные записи на консультацию',dir:'up'}]},
-
-  {id:r(),topic:'mot',problem:'Открытый доступ ко всему объёму материалов сразу пугает студентов — они видят огромный курс, теряют мотивацию и бросают учёбу.',sources:['sup','int'],proof:'Поддержка: «Когда открывается весь объём, многие пугаются, не делают кейсы и забрасывают учёбу». Интервью: «Свободный формат — только для очень организованных людей» (Юлия).',flow:'dash',task:'Режим «Фокус недели»: 3–5 рекомендованных уроков — остальное доступно, но не давит',hypothesis:'Если студент видит короткий список приоритетных уроков на неделю, то доля бросивших учёбу в первые 4 недели снизится, потому что открытый объём вызывает паралич — и куратор это подтвердил.',metrics:[{label:'Доля «брошенных» студентов (нет активности > 14 дней)',dir:'dn'},{label:'Доходимость',dir:'up'}]},
-
-  {id:r(),topic:'mot',problem:'«Продуктивная прокрастинация»: студенты смотрят лекции вместо практики — прогресса в портфолио нет, наступает выгорание.',sources:['surv','int'],proof:'Опрос: «Пару раз я демотивировалась, потому что слишком много смотрела, а портфолио не переделала». Интервью: «В день можно сделать либо одно, либо другое» (Никита).',flow:'dash',task:'Индикатор баланса «Теория / Практика» + подсказка «Пора сделать домашнее задание»',hypothesis:'Если студент получает сигнал о перекосе в сторону пассивного просмотра, то кол-во выполненных домашних заданий вырастет, потому что это осознанная поведенческая ловушка, которую студенты хотят избежать.',metrics:[{label:'Кол-во выполненных домашних заданий',dir:'up'},{label:'Прогресс в портфолио — кол-во загруженных кейсов',dir:'up'}]},
-
-  {id:r(),topic:'mot',problem:'Студенты чувствуют изоляцию — нет ощущения учёбы «с кем-то», особенно на тарифе «Релакс».',sources:['int','sup'],proof:'Интервью: «Есть ощущение, что наедине просто с материалом. Кто-то стесняется, кто-то не хочет отнимать время. И ты просто сидишь один» (Никита).',flow:'dash',task:'Лента активности потока: «N студентов завершили этот модуль на этой неделе»',hypothesis:'Если студент видит анонимную активность однокурсников, то ощущение изоляции снизится, потому что 75% студентов учатся в одиночку без контакта с сообществом — и это их демотивирует.',metrics:[{label:'Субъективная оценка «ощущения поддержки» (опрос)',dir:'up'},{label:'Доходимость',dir:'up'}]},
-
-  {id:r(),topic:'mot',problem:'Правила тарифа «Хард» непонятны — студенты не знают, что обязательно, что нет, воспринимают отсутствие дедлайнов как баг.',sources:['int','sup'],proof:'Интервью: «Я шёл и думал: "Сейчас начнётся обязательное!". А обязательных нет. Я подумал: может, это баг?» (Семён). Опрос: Хард 4.7 vs Релакс 5.8.',flow:'prof',task:'Описание тарифа Хард / Релакс в профиле: что обязательно, что нет, дедлайны с визуальным разделением',hypothesis:'Если правила тарифа чётко описаны в профиле, то удовлетворённость студентов на Харде вырастет, потому что сейчас они воспринимают отсутствие явных дедлайнов как баг — Хард имеет самый низкий балл (4.7 против 5.8).',metrics:[{label:'Средняя оценка удовлетворённости студентов Хард',dir:'up'},{label:'Кол-во вопросов «что обязательно?» в поддержку',dir:'dn'}]},
-
-  {id:r(),topic:'feed',problem:'40% студентов хотели дать фидбек, но не сделали — боялись «выглядеть конфликтными», не знали куда писать или забыли.',sources:['surv'],proof:'Опрос: ~40% хотели, но не дали фидбек. Причины: «Не хотелось выглядеть конфликтным» (самый частый), «Сложно найти куда писать», «Потом забылось».',flow:'dash',task:'Форма анонимной обратной связи: одна кнопка + теги-причины — доступна с главной и со страницы урока',hypothesis:'Если дать студенту возможность оставить фидбек анонимно в два клика, то кол-во единиц обратной связи в месяц вырастет, потому что оба главных барьера — страх и незнание куда писать — снимаются.',metrics:[{label:'Кол-во единиц фидбека в месяц',dir:'up'}]},
-
-  {id:r(),topic:'cont',problem:'Доп. материалы (книги, статьи, видео) встроены в Figma-презентацию — студент уходит по ссылкам во время лекции и теряет фокус («кроличья нора»).',sources:['int','ux'],proof:'Интервью: «Ссылки отвлекают! Я иду по курсу зигзагами. Давать их отдельным блоком под лекцией?» (Юлия). UX-аудит: «Вероятность вернуться к ним была почти нулевой».',flow:'lec',task:'Вкладка «Материалы» под каждым уроком — все ссылки отдельно от плеера, можно сохранить',hypothesis:'Если доп. материалы вынесены в отдельную вкладку, то глубина сессии просмотра вырастет, потому что сейчас студенты уходят по ссылкам прямо во время лекции и теряют основной поток.',metrics:[{label:'Ср. длительность непрерывной сессии просмотра',dir:'up'},{label:'Доля студентов, открывавших доп. материалы',dir:'up'}]},
-
-  {id:r(),topic:'cont',problem:'Студенты хотят выбирать лекцию под текущий контекст (телефон/компьютер, 20 минут/час), но нет фильтрации.',sources:['int','ux','surv'],proof:'Интервью: «Лайтовые лекции смотрю с телефона, хардкорные — только с ноутбука» (Семён). UX-аудит: «Хотела выбирать видео по ресурсу». Опрос: 80% смотрят только с компьютера.',flow:'lec',task:'Фильтры в списке уроков: по длительности (до 20 мин / 20–45 мин / 45+), по типу, по статусу',hypothesis:'Если студент может отфильтровать уроки под текущий ресурс, то частота просмотров вырастет, потому что студенты готовы учиться на телефоне в короткие окна, но не знают, какие уроки подходят.',metrics:[{label:'Доля просмотров с мобильного устройства',dir:'up'},{label:'Кол-во просмотренных уроков в неделю',dir:'up'}]},
-
-  {id:r(),topic:'cont',problem:'Студенты возвращаются к просмотру несколько раз. Нет таймкодов к видео — при повторном просмотре невозможно быстро найти нужный момент.',sources:['int'],proof:'Интервью: «В Uprock выписывали таймкоды. Это сократило бы время поиска» (Никита). Опрос: студенты активно используют ускорение 1.5–1.75×.',flow:'lec',task:'Кликабельные таймкоды под плеером: главы лекции с метками времени',hypothesis:'Если студент может перейти к нужному моменту одним кликом, то повторные просмотры вырастут и время на поиск нужного момента снизится, потому что студенты активно пересматривают лекции.',metrics:[{label:'Кол-во повторных просмотров',dir:'up'},{label:'Ср. время до нахождения нужного момента',dir:'dn'}]},
-
-  {id:r(),topic:'cont',problem:'Статус домашних заданий непонятен — интерфейс предлагает «отправить», хотя это необязательно. На Харде неясно, какие ДЗ обязательны.',sources:['sup','int'],proof:'Интервью: «Я шёл и думал: сейчас начнётся обязательное! А обязательных нет. Может, это баг?» (Семён). Поддержка: кнопка «Начать/Завершить задание» сбивает студентов с толку.',flow:'prof',task:'Инструкция по тарифам в профиле + статус ДЗ: метка «Рекомендуется» для необязательных',hypothesis:'Если правила ДЗ прозрачно описаны в профиле, то кол-во орг. вопросов по тарифам снизится, потому что студенты сейчас не понимают статус заданий и воспринимают это как баг.',metrics:[{label:'Кол-во вопросов по статусу ДЗ в поддержку',dir:'dn'},{label:'Кол-во выполненных необязательных ДЗ',dir:'up'}]},
-
-  {id:r(),topic:'nav',problem:'Показ виджета «Ваш доступ» при первом входе на платформу.',sources:['surv','sup'],proof:'Опрос: студенты узнают о дедлайнах слишком поздно — уже не успевают спланировать использование лимитов.',flow:'onb',task:'Объяснение тарифов Релакс / Хард при первом входе + виджет «Ваш доступ» с первого дня',hypothesis:'Если студент видит сроки сгорания доступа сразу при старте, то доля использованных консультаций в первые 8 недель вырастет, потому что студенты, узнающие о дедлайне поздно, не успевают спланировать лимиты.',metrics:[{label:'% консультаций, использованных в первые 8 недель',dir:'up'},{label:'% сгоревших слотов',dir:'dn'}]},
-
-  {id:r(),topic:'nav',problem:'',sources:[],proof:'',flow:'admin',task:'',hypothesis:'',metrics:[]},
-  {id:r(),topic:'nav',problem:'',sources:[],proof:'',flow:'admin',task:'',hypothesis:'',metrics:[]},
-  {id:r(),topic:'nav',problem:'',sources:[],proof:'',flow:'admin',task:'',hypothesis:'',metrics:[]},
+Вообще по домашним заданиям много эмоциональных жалоб https://docs.google.com/document/d/1CWuCdQxUNWQqvfqgFk2JGb1Ego4j7r6LEVThq4UePA0/edit?usp=sharing",
+    "sources": [
+      "sup",
+      "int"
+    ],
+    "proof": "Интервью: «Я шёл и думал: сейчас начнётся обязательное! А обязательных нет. Может, это баг?» (Семён). Поддержка: кнопка «Начать/Завершить задание» сбивает студентов с толку.",
+    "flow": "prof",
+    "task": "Инструкция по тарифам в профиле",
+    "hypothesis": "Если правила ДЗ прозрачно описаны в профиле, то кол-во орг. вопросов по тарифам снизится",
+    "metrics": [
+      {
+        "label": "Кол-во вопросов по статусу ДЗ в поддержку",
+        "dir": "dn"
+      },
+      {
+        "label": "Кол-во выполненных необязательных ДЗ",
+        "dir": "up"
+      }
+    ]
+  },
+  {
+    "id": "n8n6bwoqk",
+    "topic": "nav",
+    "problem": "Показ сроков доступа в профиле.",
+    "sources": [
+      "surv",
+      "sup",
+      "int"
+    ],
+    "proof": "Опрос: студенты узнают о дедлайнах слишком поздно/ не знают о них в процессе — и их консультации сгорают",
+    "flow": "prof",
+    "task": "Объяснение тарифов Релакс / Хард на платформе+ виджет «Ваш доступ» с первого дня доступа",
+    "hypothesis": "Если студент видит сроки сгорания доступа, то доля использованных консультаций в первые 8 недель вырастет, потому что студенты смогут распределять свои лимиты более равномерно",
+    "metrics": [
+      {
+        "label": "% консультаций, использованных в первые 8 недель",
+        "dir": "up"
+      },
+      {
+        "label": "% сгоревших слотов",
+        "dir": "dn"
+      }
+    ]
+  },
+  {
+    "id": "n735vz6mk",
+    "topic": "nav",
+    "problem": "",
+    "sources": [],
+    "proof": "",
+    "flow": "admin",
+    "task": "",
+    "hypothesis": "",
+    "metrics": []
+  },
+  {
+    "id": "npqk1fn06",
+    "topic": "nav",
+    "problem": "",
+    "sources": [],
+    "proof": "",
+    "flow": "admin",
+    "task": "",
+    "hypothesis": "",
+    "metrics": []
+  },
+  {
+    "id": "nlp1mblcv",
+    "topic": "nav",
+    "problem": "",
+    "sources": [],
+    "proof": "",
+    "flow": "admin",
+    "task": "",
+    "hypothesis": "",
+    "metrics": []
+  },
+  {
+    "id": "n9i8kizgi",
+    "topic": "nav",
+    "problem": "",
+    "sources": [],
+    "proof": "",
+    "flow": "admin",
+    "task": "",
+    "hypothesis": "",
+    "metrics": []
+  }
 ];
+
+// ─── STORAGE ─────────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'rh_tableData_v1';
+
+function saveToStorage() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tableData));
+    const ind = document.getElementById('saveIndicator');
+    if (ind) { ind.textContent = '✓ сохранено'; setTimeout(()=>{ ind.textContent=''; }, 2000); }
+  } catch(e) {}
+}
+
+function resetStorage() {
+  if (!confirm('Сбросить все изменения к исходным данным? Это действие нельзя отменить.')) return;
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  location.reload();
+}
+
+function loadFromStorage() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        tableData = parsed;
+        return true;
+      }
+    }
+  } catch(e) {}
+  return false;
+}
+
+
 
 // ─── RENDER ──────────────────────────────────────────────────────────────────
 function getTopicClass(t){ return 't-'+t; }
@@ -575,7 +943,7 @@ function render(){
         div.contentEditable=true; div.spellcheck=false;
         const fullLabel = TOPIC_LABELS[row.topic]||row.topic||'';
         div.textContent = row._topicLabel !== undefined ? row._topicLabel : fullLabel;
-        div.addEventListener('input',()=>{ row._topicLabel=div.textContent; });
+        div.addEventListener('input',()=>{ row._topicLabel=div.textContent; debounceSave(); });
         div.addEventListener('keydown',e=>{ if(e.key==='Tab') e.preventDefault(); });
         td.appendChild(div); tr.appendChild(td); return;
       }
@@ -614,7 +982,7 @@ function makeEditTd(ri,field,cls){
   div.className='cell '+cls;
   div.contentEditable=true; div.spellcheck=false;
   div.textContent=tableData[ri][field]||'';
-  div.addEventListener('input',()=>{ tableData[ri][field]=div.textContent; });
+  div.addEventListener('input',()=>{ tableData[ri][field]=div.textContent; debounceSave(); });
   div.addEventListener('keydown',e=>{ if(e.key==='Tab') e.preventDefault(); });
   td.appendChild(div); return td;
 }
@@ -632,6 +1000,7 @@ function makeSourceTd(ri){
       const idx=tableData[ri].sources.indexOf(t.id);
       if(idx>-1){ tableData[ri].sources.splice(idx,1); s.classList.replace('on','off'); }
       else{ tableData[ri].sources.push(t.id); s.classList.replace('off','on'); }
+      saveToStorage();
     });
     inner.appendChild(s);
   });
@@ -652,7 +1021,7 @@ function makeFlowTd(ri){
     const keys=FLOW_KEYS;
     const idx=keys.indexOf(tableData[ri].flow||'none');
     tableData[ri].flow=keys[(idx+1)%keys.length];
-    render(); applyAllFilters();
+    saveToStorage(); render(); applyAllFilters();
   });
   inner.appendChild(txt);
   td.appendChild(inner); return td;
@@ -669,7 +1038,7 @@ function makeMetricsTd(ri){
   const mdata=tableData[ri].metrics||[];
   ta.value=mdata.map(m=>(m.dir==='up'?'↑ ':m.dir==='dn'?'↓ ':'')+m.label).join('\n');
   ta.placeholder='Каждая метрика с новой строки.\nНачните с ↑ или ↓ для направления.\nПример:\n↑ Кол-во просмотров\n↓ Обращения в поддержку';
-  ta.addEventListener('input',()=>{ parseMetrics(ri,ta.value); refreshMetricInner(inner,tableData[ri].metrics||[]); });
+  ta.addEventListener('input',()=>{ parseMetrics(ri,ta.value); refreshMetricInner(inner,tableData[ri].metrics||[]); debounceSave(); });
   ta.addEventListener('blur',()=>{ ta.classList.remove('vis'); inner.classList.remove('hid'); refreshMetricInner(inner,tableData[ri].metrics||[]); });
   inner.addEventListener('click',()=>{ ta.classList.add('vis'); inner.classList.add('hid'); ta.focus(); });
   refreshMetricInner(inner,mdata);
@@ -741,11 +1110,11 @@ function applyAllFilters(){
 function addRow(){
   const nr={id:r(),topic:'nav',problem:'',sources:[],proof:'',flow:'dash',task:'',hypothesis:'',metrics:[]};
   COL_ORDER.forEach(c=>{if(!(c in nr)) nr[c]='';});
-  tableData.push(nr); render(); applyAllFilters(); notify('Строка добавлена');
+  tableData.push(nr); saveToStorage(); render(); applyAllFilters(); notify('Строка добавлена');
   setTimeout(()=>{ const rows=document.querySelectorAll('#tableBody tr.r'); if(rows.length) rows[rows.length-1].scrollIntoView({behavior:'smooth',block:'center'}); },60);
 }
-function delRow(ri){ if(!confirm('Удалить строку?')) return; tableData.splice(ri,1); render(); applyAllFilters(); notify('Удалено'); }
-function moveRow(ri,d){ const ni=ri+d; if(ni<0||ni>=tableData.length) return; [tableData[ri],tableData[ni]]=[tableData[ni],tableData[ri]]; render(); applyAllFilters(); }
+function delRow(ri){ if(!confirm('Удалить строку?')) return; tableData.splice(ri,1); saveToStorage(); render(); applyAllFilters(); notify('Удалено'); }
+function moveRow(ri,d){ const ni=ri+d; if(ni<0||ni>=tableData.length) return; [tableData[ri],tableData[ni]]=[tableData[ni],tableData[ri]]; saveToStorage(); render(); applyAllFilters(); }
 
 // ─── COL OPS ─────────────────────────────────────────────────────────────────
 function openAddCol(){ document.getElementById('newColName').value=''; document.getElementById('addColModal').classList.add('open'); }
@@ -756,7 +1125,7 @@ function confirmAddCol(){
   const id='col_'+Date.now(); CUSTOM_COLS[id]={label:name};
   const idx=COL_ORDER.indexOf(after); COL_ORDER.splice(idx+1,0,id);
   tableData.forEach(row=>{row[id]='';});
-  rebuildHeader(); render(); applyAllFilters(); closeAddCol(); notify('Столбец добавлен');
+  rebuildHeader(); render(); applyAllFilters(); closeAddCol(); saveToStorage(); notify('Столбец добавлен');
 }
 const FIXED_LABELS={topic:'Тема',problem:'Проблема',sources:'Источник',proof:'Доказательство',flow:'Флоу',task:'Что делаем',hypothesis:'Гипотеза',metrics:'Метрики'};
 function rebuildHeader(){
@@ -768,7 +1137,7 @@ function rebuildHeader(){
       return`<th>${CUSTOM_COLS[c]?.label||c} <button class="col-del" onclick="removeCol('${c}')">✕</button></th>`;
     }).join('')+`<th id="th-ctrl"></th>`;
 }
-function removeCol(id){ if(!confirm('Удалить столбец?')) return; COL_ORDER=COL_ORDER.filter(c=>c!==id); delete CUSTOM_COLS[id]; tableData.forEach(r=>delete r[id]); rebuildHeader(); render(); applyAllFilters(); notify('Столбец удалён'); }
+function removeCol(id){ if(!confirm('Удалить столбец?')) return; COL_ORDER=COL_ORDER.filter(c=>c!==id); delete CUSTOM_COLS[id]; tableData.forEach(r=>delete r[id]); rebuildHeader(); render(); applyAllFilters(); saveToStorage(); notify('Столбец удалён'); }
 
 // ─── CSV ─────────────────────────────────────────────────────────────────────
 function exportCSV(){
@@ -792,8 +1161,14 @@ function exportCSV(){
 // ─── NOTIFY ──────────────────────────────────────────────────────────────────
 function notify(msg){ const n=document.getElementById('notif'); n.textContent=msg; n.classList.add('show'); setTimeout(()=>n.classList.remove('show'),2200); }
 
+// ─── DEBOUNCE SAVE ────────────────────────────────────────────────────────────
+let _saveTimer = null;
+function debounceSave() { clearTimeout(_saveTimer); _saveTimer = setTimeout(saveToStorage, 600); }
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+const loaded = loadFromStorage();
 render();
+if (loaded) notify('Данные загружены из сохранения');
 </script>
-
-
-</body></html>
+</body>
+</html>
