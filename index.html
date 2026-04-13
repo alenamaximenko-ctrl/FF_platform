@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Исследование + Гипотезы</title>
+<style>
+  :root {
+    --bg:#ffffff; --bg2:#f5f4f0; --bg3:#eceae3;
+    --text:#1a1a18; --text2:#4a4a45; --text3:#9c9a92;
+    --border:rgba(0,0,0,0.08); --border2:rgba(0,0,0,0.16);
+    --accent:#185FA5; --accent-bg:#E6F1FB;
+    --danger:#A32D2D; --danger-bg:#FCEBEB;
+    --font:'Helvetica Neue',Arial,sans-serif;
+
+    --nav-c:#534AB7; --nav-bg:#EEEDFE; --nav-row:#f7f6ff;
+    --prog-c:#0F6E56; --prog-bg:#E1F5EE; --prog-row:#f0faf5;
+    --plan-c:#854F0B; --plan-bg:#FAEEDA; --plan-row:#fdf8ef;
+    --cons-c:#993C1D; --cons-bg:#FAECE7; --cons-row:#fdf3ef;
+    --mot-c:#993556; --mot-bg:#FBEAF0; --mot-row:#fdf1f6;
+    --feed-c:#185FA5; --feed-bg:#E6F1FB; --feed-row:#f0f7fd;
+    --cont-c:#3B6D11; --cont-bg:#EAF3DE; --cont-row:#f3f9eb;
+
+    --f-dash-c:#0F6E56; --f-dash-bg:#E1F5EE;
+    --f-prof-c:#854F0B; --f-prof-bg:#FAEEDA;
+    --f-cons-c:#993C1D; --f-cons-bg:#FAECE7;
+    --f-lec-c:#185FA5;  --f-lec-bg:#E6F1FB;
+    --f-cal-c:#534AB7;  --f-cal-bg:#EEEDFE;
+    --f-onb-c:#5F5E5A;  --f-onb-bg:#F1EFE8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:13px;line-height:1.55;}
+
+  /* ── PAGE HEADER ── */
+  .ph{padding:18px 22px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+  .ph-left{flex:1;}
+  .ph-title{font-size:22px;font-weight:700;letter-spacing:-.4px;color:var(--text);}
+  .ph-sub{font-size:12px;color:var(--text3);margin-top:2px;}
+  .ph-src{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px 14px;}
+  .src-item{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:5px;}
+  .src-dot{width:6px;height:6px;border-radius:50%;background:var(--text3);flex-shrink:0;}
+  .ph-actions{display:flex;gap:6px;flex-shrink:0;padding-top:4px;}
+
+  /* ── BUTTONS ── */
+  .btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:5px 12px;border-radius:6px;border:1px solid var(--border2);background:var(--bg);color:var(--text2);cursor:pointer;white-space:nowrap;transition:all .12s;font-family:var(--font);}
+  .btn:hover{background:var(--bg2);color:var(--text);}
+  .btn.exp{background:var(--text);color:#fff;border-color:var(--text);}
+  .btn.exp:hover{opacity:.85;}
+  .btn svg{width:12px;height:12px;flex-shrink:0;}
+  .sep{width:1px;height:18px;background:var(--border2);flex-shrink:0;}
+
+  /* ── FILTER BARS ── */
+  .filter-section{padding:12px 22px 0;display:flex;flex-direction:column;gap:8px;}
+  .filter-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .filter-label{font-size:10px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;min-width:36px;}
+
+  /* Topic chips */
+  .chip{font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;border:1.5px solid transparent;cursor:pointer;transition:all .14s;font-family:var(--font);white-space:nowrap;}
+  .chip.all-t{background:var(--bg2);color:var(--text2);border-color:var(--border2);}
+  .chip.all-t.on{background:var(--text);color:#fff;border-color:var(--text);}
+  .chip.t-nav {background:var(--nav-bg); color:var(--nav-c); border-color:var(--nav-bg);} .chip.t-nav.on{border-color:var(--nav-c);}
+  .chip.t-prog{background:var(--prog-bg);color:var(--prog-c);border-color:var(--prog-bg);}.chip.t-prog.on{border-color:var(--prog-c);}
+  .chip.t-plan{background:var(--plan-bg);color:var(--plan-c);border-color:var(--plan-bg);}.chip.t-plan.on{border-color:var(--plan-c);}
+  .chip.t-cons{background:var(--cons-bg);color:var(--cons-c);border-color:var(--cons-bg);}.chip.t-cons.on{border-color:var(--cons-c);}
+  .chip.t-mot {background:var(--mot-bg); color:var(--mot-c); border-color:var(--mot-bg);} .chip.t-mot.on{border-color:var(--mot-c);}
+  .chip.t-feed{background:var(--feed-bg);color:var(--feed-c);border-color:var(--feed-bg);}.chip.t-feed.on{border-color:var(--feed-c);}
+  .chip.t-cont{background:var(--cont-bg);color:var(--cont-c);border-color:var(--cont-bg);}.chip.t-cont.on{border-color:var(--cont-c);}
+
+  /* Flow text buttons */
+  .ftab{font-size:12px;font-weight:400;padding:4px 2px;border:none;background:transparent;color:var(--text3);cursor:pointer;font-family:var(--font);white-space:nowrap;border-bottom:2px solid transparent;transition:all .13s;}
+  .ftab:hover{color:var(--text2);}
+  .ftab.on{color:var(--text);font-weight:500;border-bottom-color:var(--text);}
+
+  /* ── TABLE ── */
+  .tbl-wrap{margin-top:12px;overflow-x:auto;padding-bottom:60px;border-top:1px solid var(--border2);}
+  table{border-collapse:collapse;width:100%;min-width:1100px;}
+  col.c-topic{width:9%;}col.c-prob{width:18%;}
+  col.c-src{width:9%;}col.c-proof{width:17%;}col.c-flow{width:8%;}
+  col.c-task{width:17%;}col.c-hypo{width:16%;}col.c-met{width:10%;}col.c-ctrl{width:34px;}
+
+  thead th{background:var(--bg2);color:var(--text3);font-weight:500;font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:8px 10px;text-align:left;border-bottom:2px solid var(--border2);border-right:1px solid var(--border);white-space:nowrap;vertical-align:bottom;}
+  thead th:first-child,thead th:last-child{border-right:none;}
+  .th-sub{font-size:9px;font-weight:400;color:var(--text3);display:block;margin-top:2px;text-transform:none;letter-spacing:0;white-space:normal;line-height:1.3;}
+  .col-del{opacity:0;cursor:pointer;color:var(--danger);font-size:11px;border:none;background:none;padding:0 2px;}
+  th:hover .col-del{opacity:1;}
+
+  /* ── ROWS ── */
+  tbody tr{border-bottom:1px solid var(--border);}
+  tbody tr.hidden{display:none;}
+  tbody tr.t-nav {background:var(--nav-row);}
+  tbody tr.t-prog{background:var(--prog-row);}
+  tbody tr.t-plan{background:var(--plan-row);}
+  tbody tr.t-cons{background:var(--cons-row);}
+  tbody tr.t-mot {background:var(--mot-row);}
+  tbody tr.t-feed{background:var(--feed-row);}
+  tbody tr.t-cont{background:var(--cont-row);}
+
+  /* ── CELLS ── */
+  td{padding:0;border-right:1px solid var(--border);vertical-align:top;}
+  td:last-child{border-right:none;}
+  .cell{min-height:44px;padding:9px 10px;outline:none;cursor:text;white-space:pre-wrap;word-break:break-word;font-size:12px;color:var(--text2);line-height:1.55;}
+  .cell:focus{background:rgba(24,95,165,.06);outline:2px solid var(--accent);outline-offset:-2px;border-radius:1px;}
+
+  /* Topic cell left accent */
+  .topic-cell{font-weight:600;color:var(--text2);border-left:3px solid transparent;}
+  tr.t-nav  .topic-cell{border-left-color:var(--nav-c);}
+  tr.t-prog .topic-cell{border-left-color:var(--prog-c);}
+  tr.t-plan .topic-cell{border-left-color:var(--plan-c);}
+  tr.t-cons .topic-cell{border-left-color:var(--cons-c);}
+  tr.t-mot  .topic-cell{border-left-color:var(--mot-c);}
+  tr.t-feed .topic-cell{border-left-color:var(--feed-c);}
+  tr.t-cont .topic-cell{border-left-color:var(--cont-c);}
+
+  .quote-cell{font-style:italic;}
+  .hypo-cell{}
+
+  /* Flow cell — plain bold text */
+  .flow-td{padding:0;}
+  .flow-inner{min-height:44px;padding:8px 10px;display:flex;align-items:flex-start;}
+  .flow-text{font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;user-select:none;padding-top:1px;}
+  .flow-text:hover{color:var(--text);}
+
+  /* Source tags */
+  .src-td{padding:0;}
+  .src-inner{display:flex;flex-wrap:wrap;align-items:flex-start;gap:3px;padding:8px 8px;min-height:44px;}
+  .stag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;cursor:pointer;user-select:none;transition:opacity .12s;background:var(--bg3);color:var(--text2);border:1px solid var(--border2);}
+  .stag.off{opacity:.28;}
+
+  /* Metrics cell */
+  .met-td{padding:0;}
+  .met-inner{min-height:44px;padding:8px 10px;cursor:pointer;}
+  .met-list{list-style:none;}
+  .met-item{display:flex;align-items:flex-start;gap:5px;margin-bottom:8px;font-size:12px;line-height:1.45;}
+  .met-item:last-child{margin-bottom:0;}
+  .met-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+  .met-label{flex:1;color:var(--text2);}
+  .dir{font-size:9px;font-weight:500;padding:1px 6px;border-radius:3px;flex-shrink:0;margin-top:3px;white-space:nowrap;}
+  .dir.up{background:#EAF3DE;color:#3B6D11;}
+  .dir.dn{background:#FAECE7;color:#993C1D;}
+  .met-editor{width:100%;min-height:70px;border:none;outline:none;font-size:12px;color:var(--text2);font-family:var(--font);background:rgba(24,95,165,.06);padding:8px 10px;resize:vertical;display:none;line-height:1.5;}
+  .met-editor.vis{display:block;}
+  .met-inner.hid{display:none;}
+
+  /* Row controls — right side */
+  .ctrl-td{width:34px;border-left:1px solid var(--border)!important;border-right:none!important;padding:0!important;vertical-align:top;}
+  .ctrl-inner{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:5px 4px;gap:3px;min-height:44px;}
+  .ic{width:22px;height:22px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text3);transition:all .12s;flex-shrink:0;}
+  .ic:hover{background:var(--bg3);color:var(--text);}
+  .ic.del:hover{background:var(--danger-bg);color:var(--danger);border-color:#f7c1c1;}
+  .ic svg{width:11px;height:11px;}
+
+  /* Add row */
+  .add-tr td{border:none;padding:0;}
+  .add-btn{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text3);padding:9px 22px;cursor:pointer;border:none;background:none;font-family:var(--font);width:100%;transition:color .12s;}
+  .add-btn:hover{color:var(--accent);}
+
+  /* Modal */
+  .modal-back{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:500;align-items:center;justify-content:center;}
+  .modal-back.open{display:flex;}
+  .modal{background:var(--bg);border-radius:12px;padding:22px;width:360px;border:1px solid var(--border2);}
+  .modal h2{font-size:14px;font-weight:600;margin-bottom:14px;}
+  .modal label{display:block;font-size:11px;color:var(--text2);margin-bottom:4px;margin-top:11px;}
+  .modal input,.modal select{width:100%;padding:7px 10px;border:1px solid var(--border2);border-radius:6px;font-size:13px;background:var(--bg);color:var(--text);font-family:var(--font);}
+  .modal-act{display:flex;gap:8px;margin-top:18px;justify-content:flex-end;}
+
+  /* Notify */
+  .notif{position:fixed;bottom:20px;right:20px;background:var(--text);color:#fff;font-size:12px;padding:8px 14px;border-radius:8px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:999;}
+  .notif.show{opacity:1;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="ph">
+  <div class="ph-left">
+    <div class="ph-title">Проблемы студентов — исследование и гипотезы</div>
+    <div class="ph-sub">24 проблемы · 22 гипотезы</div>
+    <div class="ph-src">
+      <span class="src-item"><span class="src-dot"></span>UX-аудит от первого лица</span>
+      <span class="src-item"><span class="src-dot"></span>Опрос (26 чел.: 16 — 14 поток, 10 — 13 поток)</span>
+      <span class="src-item"><span class="src-dot"></span>Интервью (5 человек, 14 поток)</span>
+      <span class="src-item"><span class="src-dot"></span>Обращения в поддержку (Валерия и Влад)</span>
+    </div>
+  </div>
+  <div class="ph-actions">
+    <button class="btn" onclick="addRow()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>Строку
+    </button>
+    <button class="btn" onclick="openAddCol()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>Столбец
+    </button>
+    <div class="sep"></div>
+    <button class="btn exp" onclick="exportCSV()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 11h10M7 2v7M4 6l3 3 3-3"/></svg>CSV
+    </button>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filter-section">
+  <div class="filter-row">
+    <span class="filter-label">Тема</span>
+    <button class="chip all-t on" data-topic="all">Все</button>
+    <button class="chip t-nav"  data-topic="nav">Навигация</button>
+    <button class="chip t-prog" data-topic="prog">Прогресс</button>
+    <button class="chip t-plan" data-topic="plan">Планирование</button>
+    <button class="chip t-cons" data-topic="cons">Консультации</button>
+    <button class="chip t-mot"  data-topic="mot">Мотивация</button>
+    <button class="chip t-feed" data-topic="feed">Фидбек</button>
+    <button class="chip t-cont" data-topic="cont">Контент</button>
+  </div>
+  <div class="filter-row" id="flowBar">
+    <span class="filter-label">Флоу</span>
+    <button class="ftab on" data-flow="all">Все</button>
+    <button class="ftab" data-flow="dash">Дашборд</button>
+    <button class="ftab" data-flow="prof">Профиль</button>
+    <button class="ftab" data-flow="cons">Консультации</button>
+    <button class="ftab" data-flow="lec">Лекции</button>
+    <button class="ftab" data-flow="cal">Календарь</button>
+    <button class="ftab" data-flow="onb">Онбординг</button>
+    <button class="ftab" data-flow="admin">Администрирование</button>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="tbl-wrap">
+<table id="mainTable">
+  <colgroup>
+    <col class="c-topic"><col class="c-prob">
+    <col class="c-src"><col class="c-proof"><col class="c-flow">
+    <col class="c-task"><col class="c-hypo"><col class="c-met"><col class="c-ctrl">
+  </colgroup>
+  <thead><tr id="headerRow">
+    <th>Тема</th>
+    <th>Проблема</th>
+    <th>Источник</th>
+    <th>Доказательство</th>
+    <th>Флоу</th>
+    <th>Что делаем</th>
+    <th>Гипотеза</th>
+    <th>Метрики<span class="th-sub">с направлением изменения</span></th>
+    <th id="th-ctrl"></th>
+  </tr></thead>
+  <tbody id="tableBody"></tbody>
+</table>
+</div>
+
+<!-- ADD COL MODAL -->
+<div class="modal-back" id="addColModal">
+  <div class="modal">
+    <h2>Добавить столбец</h2>
+    <label>Название</label>
+    <input type="text" id="newColName" placeholder="Например: Приоритет"/>
+    <label>Вставить после</label>
+    <select id="newColPos">
+      <option value="topic">Тема</option>
+      <option value="problem">Проблема</option>
+      <option value="sources">Источник</option>
+      <option value="proof">Доказательство</option>
+      <option value="flow">Флоу</option>
+      <option value="task">Что делаем</option>
+      <option value="hypothesis">Гипотеза</option>
+      <option value="metrics" selected>Метрики</option>
+    </select>
+    <div class="modal-act">
+      <button class="btn" onclick="closeAddCol()">Отмена</button>
+      <button class="btn exp" onclick="confirmAddCol()">Добавить</button>
+    </div>
+  </div>
+</div>
+
+<div class="notif" id="notif"></div>
+
+<script>
+const TAGS = [
+  {id:'ux',label:'UX-аудит'},{id:'int',label:'Интервью'},
+  {id:'surv',label:'Опрос'},{id:'sup',label:'Поддержка'}
+];
+const FLOWS = {
+  dash:'Дашборд',prof:'Профиль',cons:'Консультации',
+  lec:'Лекции',cal:'Календарь',onb:'Онбординг',admin:'Администрирование',none:'—'
+};
+const FLOW_KEYS = ['dash','prof','cons','lec','cal','onb','admin','none'];
+const TOPIC_LABELS = {
+  nav:'Навигация и информационная перегрузка',
+  prog:'Отслеживание прогресса',
+  plan:'Планирование и расписание',
+  cons:'Консультации с менторами',
+  mot:'Мотивация и самоорганизация',
+  feed:'Обратная связь',
+  cont:'Контент и доп. материалы'
+};
+const TOPIC_CATS = {nav:'Навигация',prog:'Прогресс',plan:'Планирование',cons:'Консультации',mot:'Мотивация',feed:'Фидбек',cont:'Контент'};
+const DOT_COLORS = {nav:'#534AB7',prog:'#0F6E56',plan:'#854F0B',cons:'#993C1D',mot:'#993556',feed:'#185FA5',cont:'#3B6D11',dash:'#0F6E56',prof:'#854F0B',lec:'#185FA5',cal:'#534AB7',onb:'#5F5E5A'};
+
+let COL_ORDER = ['topic','problem','sources','proof','flow','task','hypothesis','metrics'];
+let CUSTOM_COLS = {};
+let activeTopicFilter = 'all';
+let activeFlowFilter = 'all';
+
+function r(){return 'n'+Date.now()+Math.random().toString(36).slice(2,6);}
+
+let tableData = [
+  {id:r(),topic:'nav',problem:'Учеба разбросана по 5–9 инструментам: платформа, Telegram-чаты, бот, Notion, блокнот, куратор в личке. Нет единого места для учёбы.',sources:['ux','int','surv','sup'],proof:'Опрос: студенты 14 потока используют до 9 инструментов одновременно. Интервью: «На том курсе всё было в одном месте — это мой фетиш» (Милана).',flow:'dash',task:'Единый дашборд с расписанием, ссылками на лекции, записью к менторам и блоком «Команда»',hypothesis:'Если студент находит всё в одном месте, то кол-во орг. обращений к куратору снизится, потому что сейчас 60% студентов пишут куратору лично из-за непонимания куда обращаться.',metrics:[{label:'Кол-во орг. обращений к куратору',dir:'dn'},{label:'Удовлетворённость организацией (опрос)',dir:'up'}]},
+
+  {id:r(),topic:'nav',problem:'Студенты не знают, кто за что отвечает — пишут всё одному куратору в личку. Вопросы в поддержку постоянно повторяются.',sources:['int','sup','surv'],proof:'Интервью: «Чтобы посмотреть, кто за что отвечает, в чате надо далеко листать вверх» (Кристина). Опрос: 60% студентов 13 потока уточняют орг. вопросы у куратора лично после 4 месяцев.',flow:'dash',task:'Блок «Команда» на дашборде: карточки с именами, ролями и кнопками связи',hypothesis:'Если на дашборде есть чёткий блок с тем, кто за что отвечает, то загрузка команды поддержки снизится, потому что главная причина обращений — незнание нужного контакта.',metrics:[{label:'Кол-во орг. обращений к куратору в личку',dir:'dn'},{label:'Загрузка команды поддержки',dir:'dn'}]},
+
+  {id:r(),topic:'nav',problem:'Слишком много Telegram-чатов (студенты насчитывают до 10+) — непонятно, в каком искать нужную информацию.',sources:['int','sup','surv'],proof:'Интервью: «Требуется вынимание мозга из задачи, чтобы вникнуть, в каком чате смотреть инфу. Я заблудилась» (Юлия). Поддержка: студенты пропускают важную информацию.',flow:'cal',task:'Дублирование ключевых анонсов на платформе (ссылки на эфиры, записи, консультации)',hypothesis:'Если важные события отображаются на платформе независимо от Telegram, то кол-во пропущенных важных событий снизится, потому что часть студентов теряет доступ к Telegram через VPN.',metrics:[{label:'Кол-во обращений «дайте ссылку на эфир»',dir:'dn'},{label:'Охват учебных эфиров',dir:'up'}]},
+
+  {id:r(),topic:'prog',problem:'Нет визуального трекера прогресса — студенты не могут отметить просмотренный урок и не видят, сколько уже пройдено.',sources:['ux','int','sup'],proof:'UX-аудит: «Хотелось отмечать пройденные лекции и получать дофаминовое подкрепление, расставляя галочки». Поддержка: нельзя поставить галочку напротив просмотренного урока.',flow:'dash',task:'Прогресс-бар по модулю + чекбоксы «Просмотрено» у каждого урока + визуальный дашборд курса',hypothesis:'Если студент видит визуальный прогресс и отмечает уроки галочкой, то доходимость курса вырастет, потому что дофаминовое подкрепление от закрытых чекбоксов поддерживает мотивацию особенно без внешних дедлайнов.',metrics:[{label:'Доля студентов, завершивших курс',dir:'up'},{label:'Кол-во просмотренных уроков на студента',dir:'up'}]},
+
+  {id:r(),topic:'prog',problem:'Студенты не понимают, идут ли они в нужном темпе — ориентируются на общий чат, что вызывает тревогу и ощущение отставания.',sources:['int','surv'],proof:'Интервью: «Мне кажется, я везде опаздываю. Смотрю в чат — там обсуждают что-то далеко впереди» (Кристина); «Супер насущный вопрос — еду ли я с нужной скоростью» (Никита).',flow:'dash',task:'Трекер темпа «вы идёте в темпе / немного отстаёте / опережаете» на основе личного плана',hypothesis:'Если студент видит объективный индикатор своего темпа, то тревожность снизится, потому что появится личный ориентир и отпадёт необходимость сравнивать себя с другими в чате.',metrics:[{label:'Оценка удовлетворённости — NPS',dir:'up'},{label:'Доходимость',dir:'up'}]},
+
+  {id:r(),topic:'prog',problem:'Нигде не отображаются сроки сгорания доступа к чату и консультациям — студенты думают, что доступ бессрочный.',sources:['int','sup'],proof:'Интервью: «Информации о лимитах нет вообще! Я видела таблички на продающих стримах, но в курсе акцента не помню» (Юлия). «Этот дедлайн настолько далеко, что я не волнуюсь» (Кристина).',flow:'dash',task:'Виджет «Ваш доступ»: дней до закрытия чата и сгорания консультаций, уведомления за 14 и 7 дней',hypothesis:'Если студент видит конкретный дедлайн сгорания консультаций на дашборде, то доля использованных консультаций вырастет, потому что 75% студентов не берут консультации — и одна из причин — «дедлайн кажется очень далёким».',metrics:[{label:'% использованных консультаций от лимита',dir:'up'},{label:'% сгоревших неиспользованных слотов',dir:'dn'}]},
+
+  {id:r(),topic:'plan',problem:'Учебные эфиры пересекаются с маркетинговыми — студенты не понимают, что обязательно посетить, испытывают тревогу и чувство «упущенного».',sources:['int','sup'],proof:'Интервью: «Расписание 13 и 14 потока было вместе. Я собралась на чужой челлендж в 10 утра. Чёткого понимания расписания нет до сих пор» (Юлия).',flow:'cal',task:'Персональный календарь потока — только учебные активности конкретного студента',hypothesis:'Если в календаре только события потока студента, то кол-во пропущенных учебных эфиров снизится, потому что смешение расписаний приводит к тому, что студенты приходят на чужие эфиры или пропускают свои.',metrics:[{label:'% посещаемых учебных эфиров',dir:'up'},{label:'Кол-во орг. вопросов по расписанию',dir:'dn'}]},
+
+  {id:r(),topic:'plan',problem:'Нет единой страницы с организационными данными — студенты не знают, где платить рассрочку, путаются в неделях программы.',sources:['int','sup'],proof:'Интервью: «У меня рассрочка. Я вообще не понимала, где и как платить второй платёж. Пришлось искать куратора в личке» (Юлия).',flow:'prof',task:'Блок «Мой курс» в профиле: тариф, текущая неделя, сроки доступа, статус оплаты рассрочки',hypothesis:'Если информация о курсе и оплате собрана в профиле, то орг. обращения к кураторам снизятся и своевременность оплат вырастет.',metrics:[{label:'Кол-во орг. обращений к кураторам',dir:'dn'},{label:'% платежей, поступивших в срок',dir:'up'}]},
+
+  {id:r(),topic:'plan',problem:'Невозможно учесть длительность лекций при планировании, студенты перегружают себя или теряют ритм.',sources:['ux','int'],proof:'UX-аудит: «Нужен планировщик, где учитываются задачи и примерное время на лекции». Интервью: «Нужно в курсе ставить вехи-ориентиры» (Юлия).',flow:'lec',task:'Метка длительности с учётом скорости воспроизведения + метка «Удобно с телефона»',hypothesis:'Если студент видит реальную длительность урока с учётом скорости, то регулярность учёбы вырастет, потому что можно подобрать урок под доступное временное окно.',metrics:[{label:'Регулярность — дней с активностью в неделю',dir:'up'},{label:'Доходимость',dir:'up'}]},
+
+  {id:r(),topic:'cons',problem:'75% студентов не взяли ни одной консультации (13 поток — 0%). Барьеры: «нечего показать», «не знаю, когда пора», «боюсь потратить лимит впустую».',sources:['int','surv','sup'],proof:'Опрос: ~75% ещё не брали консультацию; 13 поток — 0% (ни один из 10 респондентов). Интервью: «Мне нечего предъявить. Хочу прийти с чем-то стоящим» (Милана).',flow:'cons',task:'Каталог менторов с компетенциями + блок «С чем прийти прямо сейчас» (карточки примеров)',hypothesis:'Если рядом с кнопкой записи есть примеры вопросов, с которыми можно прийти прямо сейчас, то барьер «мне нечего показать» снизится, потому что студенты не знают, что консультация возможна без готового портфолио.',metrics:[{label:'% студентов, взявших хотя бы одну консультацию',dir:'up'},{label:'Ср. кол-во консультаций на студента',dir:'up'}]},
+
+  {id:r(),topic:'cons',problem:'Студенты не могут найти расписание менторов и понять, как записаться технически — бросают попытку и «забивают».',sources:['int','sup','surv'],proof:'Интервью: «Запись к менторам — главная проблема! Люди постоянно спрашивают одно и то же» (Кристина); «Я не знала, как записаться — ну и не записывалась. Просто забила» (Кристина).',flow:'cons',task:'Встроенная запись на консультацию на платформе без перехода в YClients или Telegram-бот',hypothesis:'Если запись осуществляется в одном месте без переходов, то кол-во записей вырастет, потому что студенты «забивали» когда не понимали техническую механику — одна студентка узнала о боте только на интервью.',metrics:[{label:'Кол-во записей на консультацию в неделю',dir:'up'},{label:'Кол-во орг. вопросов «как записаться»',dir:'dn'}]},
+
+  {id:r(),topic:'cons',problem:'Студенты не знают своих лимитов консультаций и когда они сгорят — информация отсутствует внутри курса.',sources:['int','surv'],proof:'Интервью: «Информации о лимитах нет вообще. Я видела таблички на стримах, но в курсе акцента не помню» (Юлия); «Появились сомнения, это бросило в смятение» (Никита).',flow:'dash',task:'Счётчик консультаций «Осталось X из N» с подсказкой, после каких модулей брать',hypothesis:'Если студент видит остаток лимита и контекстную подсказку, то он перестанет откладывать запись до «идеального момента», потому что исчезает страх потратить лимит впустую.',metrics:[{label:'% сгоревших неиспользованных слотов',dir:'dn'},{label:'Воспринимаемая ценность тарифа (опрос)',dir:'up'}]},
+
+  {id:r(),topic:'cons',problem:'Нет страницы с информацией о предстоящих и прошедших консультациях — сложно подготовиться и вернуться к материалам.',sources:['int'],proof:'Интервью: Студенты не знают, где найти ссылку на предстоящую консультацию и не могут вернуться к видеозаписям прошедших встреч.',flow:'cons',task:'Блок «Предстоящие»: ссылка Yandex.Telemost + дата/время/ментор. Архив: даты, заметки, видеозаписи',hypothesis:'Если ссылка и история консультаций доступны на платформе, то посещаемость вырастет, а воспринимаемая ценность консультаций повысится.',metrics:[{label:'% посещаемых консультаций',dir:'up'},{label:'Повторные записи на консультацию',dir:'up'}]},
+
+  {id:r(),topic:'mot',problem:'Открытый доступ ко всему объёму материалов сразу пугает студентов — они видят огромный курс, теряют мотивацию и бросают учёбу.',sources:['sup','int'],proof:'Поддержка: «Когда открывается весь объём, многие пугаются, не делают кейсы и забрасывают учёбу». Интервью: «Свободный формат — только для очень организованных людей» (Юлия).',flow:'dash',task:'Режим «Фокус недели»: 3–5 рекомендованных уроков — остальное доступно, но не давит',hypothesis:'Если студент видит короткий список приоритетных уроков на неделю, то доля бросивших учёбу в первые 4 недели снизится, потому что открытый объём вызывает паралич — и куратор это подтвердил.',metrics:[{label:'Доля «брошенных» студентов (нет активности > 14 дней)',dir:'dn'},{label:'Доходимость',dir:'up'}]},
+
+  {id:r(),topic:'mot',problem:'«Продуктивная прокрастинация»: студенты смотрят лекции вместо практики — прогресса в портфолио нет, наступает выгорание.',sources:['surv','int'],proof:'Опрос: «Пару раз я демотивировалась, потому что слишком много смотрела, а портфолио не переделала». Интервью: «В день можно сделать либо одно, либо другое» (Никита).',flow:'dash',task:'Индикатор баланса «Теория / Практика» + подсказка «Пора сделать домашнее задание»',hypothesis:'Если студент получает сигнал о перекосе в сторону пассивного просмотра, то кол-во выполненных домашних заданий вырастет, потому что это осознанная поведенческая ловушка, которую студенты хотят избежать.',metrics:[{label:'Кол-во выполненных домашних заданий',dir:'up'},{label:'Прогресс в портфолио — кол-во загруженных кейсов',dir:'up'}]},
+
+  {id:r(),topic:'mot',problem:'Студенты чувствуют изоляцию — нет ощущения учёбы «с кем-то», особенно на тарифе «Релакс».',sources:['int','sup'],proof:'Интервью: «Есть ощущение, что наедине просто с материалом. Кто-то стесняется, кто-то не хочет отнимать время. И ты просто сидишь один» (Никита).',flow:'dash',task:'Лента активности потока: «N студентов завершили этот модуль на этой неделе»',hypothesis:'Если студент видит анонимную активность однокурсников, то ощущение изоляции снизится, потому что 75% студентов учатся в одиночку без контакта с сообществом — и это их демотивирует.',metrics:[{label:'Субъективная оценка «ощущения поддержки» (опрос)',dir:'up'},{label:'Доходимость',dir:'up'}]},
+
+  {id:r(),topic:'mot',problem:'Правила тарифа «Хард» непонятны — студенты не знают, что обязательно, что нет, воспринимают отсутствие дедлайнов как баг.',sources:['int','sup'],proof:'Интервью: «Я шёл и думал: "Сейчас начнётся обязательное!". А обязательных нет. Я подумал: может, это баг?» (Семён). Опрос: Хард 4.7 vs Релакс 5.8.',flow:'prof',task:'Описание тарифа Хард / Релакс в профиле: что обязательно, что нет, дедлайны с визуальным разделением',hypothesis:'Если правила тарифа чётко описаны в профиле, то удовлетворённость студентов на Харде вырастет, потому что сейчас они воспринимают отсутствие явных дедлайнов как баг — Хард имеет самый низкий балл (4.7 против 5.8).',metrics:[{label:'Средняя оценка удовлетворённости студентов Хард',dir:'up'},{label:'Кол-во вопросов «что обязательно?» в поддержку',dir:'dn'}]},
+
+  {id:r(),topic:'feed',problem:'40% студентов хотели дать фидбек, но не сделали — боялись «выглядеть конфликтными», не знали куда писать или забыли.',sources:['surv'],proof:'Опрос: ~40% хотели, но не дали фидбек. Причины: «Не хотелось выглядеть конфликтным» (самый частый), «Сложно найти куда писать», «Потом забылось».',flow:'dash',task:'Форма анонимной обратной связи: одна кнопка + теги-причины — доступна с главной и со страницы урока',hypothesis:'Если дать студенту возможность оставить фидбек анонимно в два клика, то кол-во единиц обратной связи в месяц вырастет, потому что оба главных барьера — страх и незнание куда писать — снимаются.',metrics:[{label:'Кол-во единиц фидбека в месяц',dir:'up'}]},
+
+  {id:r(),topic:'cont',problem:'Доп. материалы (книги, статьи, видео) встроены в Figma-презентацию — студент уходит по ссылкам во время лекции и теряет фокус («кроличья нора»).',sources:['int','ux'],proof:'Интервью: «Ссылки отвлекают! Я иду по курсу зигзагами. Давать их отдельным блоком под лекцией?» (Юлия). UX-аудит: «Вероятность вернуться к ним была почти нулевой».',flow:'lec',task:'Вкладка «Материалы» под каждым уроком — все ссылки отдельно от плеера, можно сохранить',hypothesis:'Если доп. материалы вынесены в отдельную вкладку, то глубина сессии просмотра вырастет, потому что сейчас студенты уходят по ссылкам прямо во время лекции и теряют основной поток.',metrics:[{label:'Ср. длительность непрерывной сессии просмотра',dir:'up'},{label:'Доля студентов, открывавших доп. материалы',dir:'up'}]},
+
+  {id:r(),topic:'cont',problem:'Студенты хотят выбирать лекцию под текущий контекст (телефон/компьютер, 20 минут/час), но нет фильтрации.',sources:['int','ux','surv'],proof:'Интервью: «Лайтовые лекции смотрю с телефона, хардкорные — только с ноутбука» (Семён). UX-аудит: «Хотела выбирать видео по ресурсу». Опрос: 80% смотрят только с компьютера.',flow:'lec',task:'Фильтры в списке уроков: по длительности (до 20 мин / 20–45 мин / 45+), по типу, по статусу',hypothesis:'Если студент может отфильтровать уроки под текущий ресурс, то частота просмотров вырастет, потому что студенты готовы учиться на телефоне в короткие окна, но не знают, какие уроки подходят.',metrics:[{label:'Доля просмотров с мобильного устройства',dir:'up'},{label:'Кол-во просмотренных уроков в неделю',dir:'up'}]},
+
+  {id:r(),topic:'cont',problem:'Студенты возвращаются к просмотру несколько раз. Нет таймкодов к видео — при повторном просмотре невозможно быстро найти нужный момент.',sources:['int'],proof:'Интервью: «В Uprock выписывали таймкоды. Это сократило бы время поиска» (Никита). Опрос: студенты активно используют ускорение 1.5–1.75×.',flow:'lec',task:'Кликабельные таймкоды под плеером: главы лекции с метками времени',hypothesis:'Если студент может перейти к нужному моменту одним кликом, то повторные просмотры вырастут и время на поиск нужного момента снизится, потому что студенты активно пересматривают лекции.',metrics:[{label:'Кол-во повторных просмотров',dir:'up'},{label:'Ср. время до нахождения нужного момента',dir:'dn'}]},
+
+  {id:r(),topic:'cont',problem:'Статус домашних заданий непонятен — интерфейс предлагает «отправить», хотя это необязательно. На Харде неясно, какие ДЗ обязательны.',sources:['sup','int'],proof:'Интервью: «Я шёл и думал: сейчас начнётся обязательное! А обязательных нет. Может, это баг?» (Семён). Поддержка: кнопка «Начать/Завершить задание» сбивает студентов с толку.',flow:'prof',task:'Инструкция по тарифам в профиле + статус ДЗ: метка «Рекомендуется» для необязательных',hypothesis:'Если правила ДЗ прозрачно описаны в профиле, то кол-во орг. вопросов по тарифам снизится, потому что студенты сейчас не понимают статус заданий и воспринимают это как баг.',metrics:[{label:'Кол-во вопросов по статусу ДЗ в поддержку',dir:'dn'},{label:'Кол-во выполненных необязательных ДЗ',dir:'up'}]},
+
+  {id:r(),topic:'nav',problem:'Показ виджета «Ваш доступ» при первом входе на платформу.',sources:['surv','sup'],proof:'Опрос: студенты узнают о дедлайнах слишком поздно — уже не успевают спланировать использование лимитов.',flow:'onb',task:'Объяснение тарифов Релакс / Хард при первом входе + виджет «Ваш доступ» с первого дня',hypothesis:'Если студент видит сроки сгорания доступа сразу при старте, то доля использованных консультаций в первые 8 недель вырастет, потому что студенты, узнающие о дедлайне поздно, не успевают спланировать лимиты.',metrics:[{label:'% консультаций, использованных в первые 8 недель',dir:'up'},{label:'% сгоревших слотов',dir:'dn'}]},
+
+  {id:r(),topic:'nav',problem:'',sources:[],proof:'',flow:'admin',task:'',hypothesis:'',metrics:[]},
+  {id:r(),topic:'nav',problem:'',sources:[],proof:'',flow:'admin',task:'',hypothesis:'',metrics:[]},
+  {id:r(),topic:'nav',problem:'',sources:[],proof:'',flow:'admin',task:'',hypothesis:'',metrics:[]},
+];
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+function getTopicClass(t){ return 't-'+t; }
+function getFlowKey(row){ return row.flow||'none'; }
+function getDotColor(topicKey){ return DOT_COLORS[topicKey]||'#888'; }
+
+function render(){
+  const tb=document.getElementById('tableBody');
+  tb.innerHTML='';
+  tableData.forEach((row,ri)=>{
+    const tr=document.createElement('tr');
+    tr.dataset.topic=row.topic||'';
+    tr.dataset.flow=getFlowKey(row);
+    tr.className='r t-'+(row.topic||'');
+    applyVisibility(tr);
+
+    COL_ORDER.forEach(colId=>{
+      if(colId==='sources'){ tr.appendChild(makeSourceTd(ri)); return; }
+      if(colId==='flow'){    tr.appendChild(makeFlowTd(ri));   return; }
+      if(colId==='metrics'){ tr.appendChild(makeMetricsTd(ri)); return; }
+      if(colId==='topic'){
+        const td=document.createElement('td');
+        const div=document.createElement('div');
+        div.className='cell topic-cell';
+        div.contentEditable=true; div.spellcheck=false;
+        const fullLabel = TOPIC_LABELS[row.topic]||row.topic||'';
+        div.textContent = row._topicLabel !== undefined ? row._topicLabel : fullLabel;
+        div.addEventListener('input',()=>{ row._topicLabel=div.textContent; });
+        div.addEventListener('keydown',e=>{ if(e.key==='Tab') e.preventDefault(); });
+        td.appendChild(div); tr.appendChild(td); return;
+      }
+      let cls='';
+      if(colId==='proof') cls='quote-cell';
+      if(colId==='hypothesis') cls='hypo-cell';
+      tr.appendChild(makeEditTd(ri,colId,cls));
+    });
+
+    // Controls at the END
+    const ctrlTd=document.createElement('td');
+    ctrlTd.className='ctrl-td';
+    ctrlTd.innerHTML=`<div class="ctrl-inner">
+      <button class="ic" onclick="moveRow(${ri},-1)" title="Вверх"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,8 6,4 10,8"/></svg></button>
+      <button class="ic" onclick="moveRow(${ri},1)" title="Вниз"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="2,4 6,8 10,4"/></svg></button>
+      <button class="ic del" onclick="delRow(${ri})" title="Удалить"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="2" x2="10" y2="10"/><line x1="10" y1="2" x2="2" y2="10"/></svg></button>
+    </div>`;
+    tr.appendChild(ctrlTd);
+
+    tb.appendChild(tr);
+  });
+
+  // add row button
+  const addTr=document.createElement('tr');
+  addTr.className='add-tr';
+  const addTd=document.createElement('td');
+  addTd.colSpan=COL_ORDER.length+1;
+  addTd.innerHTML='<button class="add-btn" onclick="addRow()">＋ Добавить строку</button>';
+  addTr.appendChild(addTd);
+  tb.appendChild(addTr);
+}
+
+function makeEditTd(ri,field,cls){
+  const td=document.createElement('td');
+  const div=document.createElement('div');
+  div.className='cell '+cls;
+  div.contentEditable=true; div.spellcheck=false;
+  div.textContent=tableData[ri][field]||'';
+  div.addEventListener('input',()=>{ tableData[ri][field]=div.textContent; });
+  div.addEventListener('keydown',e=>{ if(e.key==='Tab') e.preventDefault(); });
+  td.appendChild(div); return td;
+}
+
+function makeSourceTd(ri){
+  const td=document.createElement('td');
+  td.className='src-td';
+  const inner=document.createElement('div');
+  inner.className='src-inner';
+  TAGS.forEach(t=>{
+    const s=document.createElement('span');
+    s.className='stag '+(tableData[ri].sources.includes(t.id)?'on':'off');
+    s.textContent=t.label;
+    s.addEventListener('click',()=>{
+      const idx=tableData[ri].sources.indexOf(t.id);
+      if(idx>-1){ tableData[ri].sources.splice(idx,1); s.classList.replace('on','off'); }
+      else{ tableData[ri].sources.push(t.id); s.classList.replace('off','on'); }
+    });
+    inner.appendChild(s);
+  });
+  td.appendChild(inner); return td;
+}
+
+function makeFlowTd(ri){
+  const td=document.createElement('td');
+  td.className='flow-td';
+  const inner=document.createElement('div');
+  inner.className='flow-inner';
+  const fk=tableData[ri].flow||'none';
+  const txt=document.createElement('span');
+  txt.className='flow-text';
+  txt.textContent=FLOWS[fk]||fk;
+  txt.title='Нажмите для смены флоу';
+  txt.addEventListener('click',()=>{
+    const keys=FLOW_KEYS;
+    const idx=keys.indexOf(tableData[ri].flow||'none');
+    tableData[ri].flow=keys[(idx+1)%keys.length];
+    render(); applyAllFilters();
+  });
+  inner.appendChild(txt);
+  td.appendChild(inner); return td;
+}
+
+function makeMetricsTd(ri){
+  const td=document.createElement('td');
+  td.className='met-td';
+  const inner=document.createElement('div');
+  inner.className='met-inner';
+  inner.title='Нажмите для редактирования';
+  const ta=document.createElement('textarea');
+  ta.className='met-editor';
+  const mdata=tableData[ri].metrics||[];
+  ta.value=mdata.map(m=>(m.dir==='up'?'↑ ':m.dir==='dn'?'↓ ':'')+m.label).join('\n');
+  ta.placeholder='Каждая метрика с новой строки.\nНачните с ↑ или ↓ для направления.\nПример:\n↑ Кол-во просмотров\n↓ Обращения в поддержку';
+  ta.addEventListener('input',()=>{ parseMetrics(ri,ta.value); refreshMetricInner(inner,tableData[ri].metrics||[]); });
+  ta.addEventListener('blur',()=>{ ta.classList.remove('vis'); inner.classList.remove('hid'); refreshMetricInner(inner,tableData[ri].metrics||[]); });
+  inner.addEventListener('click',()=>{ ta.classList.add('vis'); inner.classList.add('hid'); ta.focus(); });
+  refreshMetricInner(inner,mdata);
+  td.appendChild(inner); td.appendChild(ta); return td;
+}
+
+function parseMetrics(ri,val){
+  const lines=val.split('\n').map(s=>s.trim()).filter(Boolean);
+  tableData[ri].metrics=lines.map(l=>{
+    if(l.startsWith('↑')||l.startsWith('^')) return{label:l.replace(/^[↑^]\s*/,''),dir:'up'};
+    if(l.startsWith('↓')||l.startsWith('v')) return{label:l.replace(/^[↓v]\s*/,''),dir:'dn'};
+    return{label:l,dir:''};
+  });
+}
+
+function refreshMetricInner(el,metrics){
+  el.innerHTML='';
+  if(!metrics||!metrics.length){ el.style.minHeight='44px'; return; }
+  const ul=document.createElement('ul');
+  ul.className='met-list';
+  metrics.forEach(m=>{
+    const li=document.createElement('li');
+    li.className='met-item';
+    const dot=document.createElement('span');
+    dot.className='met-dot';
+    dot.style.background='var(--text3)';
+    const label=document.createElement('span');
+    label.className='met-label';
+    label.textContent=m.label;
+    li.appendChild(dot); li.appendChild(label);
+    if(m.dir){
+      const d=document.createElement('span');
+      d.className='dir '+(m.dir==='up'?'up':'dn');
+      d.textContent=m.dir==='up'?'↑ растёт':'↓ снижается';
+      li.appendChild(d);
+    }
+    ul.appendChild(li);
+  });
+  el.appendChild(ul);
+}
+
+// ─── FILTER ──────────────────────────────────────────────────────────────────
+document.querySelector('.filter-row:nth-child(1)').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-topic]'); if(!btn) return;
+  document.querySelectorAll('[data-topic]').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  activeTopicFilter=btn.dataset.topic;
+  applyAllFilters();
+});
+document.getElementById('flowBar').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-flow]'); if(!btn) return;
+  document.querySelectorAll('#flowBar [data-flow]').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  activeFlowFilter=btn.dataset.flow;
+  applyAllFilters();
+});
+
+function applyVisibility(tr){
+  const t=tr.dataset.topic||'', f=tr.dataset.flow||'';
+  const topicOk=activeTopicFilter==='all'||t===activeTopicFilter;
+  const flowOk=activeFlowFilter==='all'||f===activeFlowFilter;
+  tr.classList.toggle('hidden',!topicOk||!flowOk);
+}
+function applyAllFilters(){
+  document.querySelectorAll('#tableBody tr.r').forEach(tr=>applyVisibility(tr));
+}
+
+// ─── ROW OPS ─────────────────────────────────────────────────────────────────
+function addRow(){
+  const nr={id:r(),topic:'nav',problem:'',sources:[],proof:'',flow:'dash',task:'',hypothesis:'',metrics:[]};
+  COL_ORDER.forEach(c=>{if(!(c in nr)) nr[c]='';});
+  tableData.push(nr); render(); applyAllFilters(); notify('Строка добавлена');
+  setTimeout(()=>{ const rows=document.querySelectorAll('#tableBody tr.r'); if(rows.length) rows[rows.length-1].scrollIntoView({behavior:'smooth',block:'center'}); },60);
+}
+function delRow(ri){ if(!confirm('Удалить строку?')) return; tableData.splice(ri,1); render(); applyAllFilters(); notify('Удалено'); }
+function moveRow(ri,d){ const ni=ri+d; if(ni<0||ni>=tableData.length) return; [tableData[ri],tableData[ni]]=[tableData[ni],tableData[ri]]; render(); applyAllFilters(); }
+
+// ─── COL OPS ─────────────────────────────────────────────────────────────────
+function openAddCol(){ document.getElementById('newColName').value=''; document.getElementById('addColModal').classList.add('open'); }
+function closeAddCol(){ document.getElementById('addColModal').classList.remove('open'); }
+function confirmAddCol(){
+  const name=document.getElementById('newColName').value.trim(); if(!name){alert('Введите название');return;}
+  const after=document.getElementById('newColPos').value;
+  const id='col_'+Date.now(); CUSTOM_COLS[id]={label:name};
+  const idx=COL_ORDER.indexOf(after); COL_ORDER.splice(idx+1,0,id);
+  tableData.forEach(row=>{row[id]='';});
+  rebuildHeader(); render(); applyAllFilters(); closeAddCol(); notify('Столбец добавлен');
+}
+const FIXED_LABELS={topic:'Тема',problem:'Проблема',sources:'Источник',proof:'Доказательство',flow:'Флоу',task:'Что делаем',hypothesis:'Гипотеза',metrics:'Метрики'};
+function rebuildHeader(){
+  const hr=document.getElementById('headerRow');
+  hr.innerHTML=
+    COL_ORDER.map(c=>{
+      if(c==='metrics') return`<th>${FIXED_LABELS[c]||c}<span class="th-sub">с направлением изменения</span></th>`;
+      if(FIXED_LABELS[c]) return`<th>${FIXED_LABELS[c]}</th>`;
+      return`<th>${CUSTOM_COLS[c]?.label||c} <button class="col-del" onclick="removeCol('${c}')">✕</button></th>`;
+    }).join('')+`<th id="th-ctrl"></th>`;
+}
+function removeCol(id){ if(!confirm('Удалить столбец?')) return; COL_ORDER=COL_ORDER.filter(c=>c!==id); delete CUSTOM_COLS[id]; tableData.forEach(r=>delete r[id]); rebuildHeader(); render(); applyAllFilters(); notify('Столбец удалён'); }
+
+// ─── CSV ─────────────────────────────────────────────────────────────────────
+function exportCSV(){
+  const esc=v=>'"'+String(v||'').replace(/"/g,'""')+'"';
+  const headers=COL_ORDER.map(c=>FIXED_LABELS[c]||CUSTOM_COLS[c]?.label||c);
+  const lines=[headers.map(esc).join(',')];
+  tableData.forEach(row=>{
+    const vals=COL_ORDER.map(c=>{
+      if(c==='sources') return row.sources.map(s=>TAGS.find(t=>t.id===s)?.label||s).join(', ');
+      if(c==='flow') return FLOWS[row.flow||'none']||row.flow||'';
+      if(c==='metrics') return(row.metrics||[]).map(m=>(m.dir==='up'?'↑ ':m.dir==='dn'?'↓ ':'')+m.label).join(' | ');
+      return row[c]||'';
+    });
+    lines.push(vals.map(esc).join(','));
+  });
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['\uFEFF'+lines.join('\n')],{type:'text/csv;charset=utf-8;'}));
+  a.download='research_hypotheses.csv'; a.click(); notify('CSV скачан');
+}
+
+// ─── NOTIFY ──────────────────────────────────────────────────────────────────
+function notify(msg){ const n=document.getElementById('notif'); n.textContent=msg; n.classList.add('show'); setTimeout(()=>n.classList.remove('show'),2200); }
+
+render();
+</script>
+</body>
+</html>
